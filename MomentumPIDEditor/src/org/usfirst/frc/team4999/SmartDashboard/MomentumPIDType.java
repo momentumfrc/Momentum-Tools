@@ -10,7 +10,7 @@ public class MomentumPIDType extends NamedDataType {
   public static final String LABEL = "MomentumPIDController";
 
   private MomentumPIDType() {
-    super(LABEL, PIDEditor.class);
+    super(LABEL, MomentumPIDEditor.class);
   }
 
   public static NamedDataType get() {
