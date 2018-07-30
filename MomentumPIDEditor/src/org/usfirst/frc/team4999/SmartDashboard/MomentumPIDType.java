@@ -1,3 +1,4 @@
+package org.usfirst.frc.team4999.SmartDashboard;
 import edu.wpi.first.smartdashboard.gui.elements.PIDEditor;
 import edu.wpi.first.smartdashboard.types.NamedDataType;
 
