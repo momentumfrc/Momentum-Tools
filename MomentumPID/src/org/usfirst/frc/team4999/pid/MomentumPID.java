@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 public class MomentumPID implements Sendable {
 	private double kP, kI, kD, kF, iErrZone;
 	private double targetZone, targetTime;
-	private double result;
+	private double result = 0;
 	private PIDSource source;
 	private PIDOutput output;
 	private double setpoint;
@@ -63,7 +63,9 @@ public class MomentumPID implements Sendable {
 		lastErr = err;
 		
 		// Combine all the parts
-		result = kF * setpoint + kP * err + kI * totalErr + kD * dErr;
+		// kF * result is feedforward used for velocity PID
+		// kF is usually 0 or 1
+		result = kF * result + kP * err + kI * totalErr + kD * dErr;
 		
 		// Write the result
 		if(output != null)
