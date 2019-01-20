@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.usfirst.frc.team4999</groupId>
+  <artifactId>momentum-pid</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20190120235743</lastUpdated>
+  </versioning>
+</metadata>
