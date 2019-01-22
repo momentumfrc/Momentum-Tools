@@ -6,7 +6,6 @@ import com.revrobotics.ControlType;
 
 import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
-import edu.wpi.first.wpilibj.Timer;
 
 public class SendableCANPIDController implements Sendable {
 
@@ -28,7 +27,8 @@ public class SendableCANPIDController implements Sendable {
 
     private PIDConstantUpdateListener updateListener = ()->{};
 
-    public SendableCANPIDController(CANSparkMax max, double targetZone, double targetTime) {
+    public SendableCANPIDController(String name, CANSparkMax max, double targetZone, double targetTime) {
+        this.name = name;
         this.max = max;
         this.controller = max.getPIDController();
         this.encoder = max.getEncoder();
