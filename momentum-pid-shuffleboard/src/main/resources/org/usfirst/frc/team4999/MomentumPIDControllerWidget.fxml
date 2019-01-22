@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import edu.wpi.first.shuffleboard.api.components.NumberField?>
+<?import org.controlsfx.control.ToggleSwitch?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="org.usfirst.frc.team4999.MomentumPIDControllerWidget"
+          fx:id="root"
+          minWidth="224" minHeight="348"
+          hgap="4" vgap="4">
+    <columnConstraints>
+        <ColumnConstraints minWidth="80" prefWidth="80" maxWidth="80"/>
+        <ColumnConstraints maxWidth="Infinity"/>
+    </columnConstraints>
+    <padding>
+        <Insets topRightBottomLeft="8"/>
+    </padding>
+    <Label text="P" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <Label text="I" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <Label text="D" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <Label text="F" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <Label text="Error Zone" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+    <Label text="Target Zone" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+    <Label text="Target Time" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+    <Label text="Setpoint" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+    <Label text="Enabled" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+    <NumberField fx:id="pField" onAction="#setP" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS"/>
+    <NumberField fx:id="iField" onAction="#setI" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.hgrow="ALWAYS"/>
+    <NumberField fx:id="dField" onAction="#setD" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.hgrow="ALWAYS"/>
+    <NumberField fx:id="fField" onAction="#setF" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.hgrow="ALWAYS"/>
+    <NumberField fx:id="errZoneField" onAction="#setErrZone" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.hgrow="ALWAYS"/>
+    <NumberField fx:id="targetZoneField" onAction="#setTargetZone" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.hgrow="ALWAYS"/>
+    <NumberField fx:id="targetTimeField" onAction="#setTargetTime" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.hgrow="ALWAYS"/>
+    <NumberField fx:id="setpointField" onAction="#setSetpoint" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.hgrow="ALWAYS"/>
+    <ToggleSwitch fx:id="enableToggle" maxWidth="0" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+</GridPane>
