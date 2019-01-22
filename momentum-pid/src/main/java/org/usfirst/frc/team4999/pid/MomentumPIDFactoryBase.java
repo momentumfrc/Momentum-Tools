@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -63,6 +64,12 @@ public abstract class MomentumPIDFactoryBase {
 		props.put("Target Time", String.format("%f", pid.getTargetTime()));
 		saveFile(props, path);
 	}
+
+	private static void saveCANPID(SendableCANPIDController pid, String path) {
+		Properties props = new Properties();
+		props.put("Target Zone", String.format("%f", pid.getTargetZone()));
+		props.put("Target Time", String.format("%f", pid.getTargetTime()));
+	}
 	
 	private static boolean checkFile(String file) {
 		File f = new File(file);
@@ -94,6 +101,22 @@ public abstract class MomentumPIDFactoryBase {
 		}
 		ret.setListener(()->savePID(ret, path));
 		addToCalculator(ret);
+		return ret;
+	}
+
+	protected static SendableCANPIDController loadCANPID(String name, String path, CANSparkMax max) {
+		SendableCANPIDController ret;
+		if(checkFile(path)) {
+			Properties props = openFile(path);
+			double targetZone = Double.parseDouble(props.getProperty("Target Zone", DEFAULT_TARGET_ZONE));
+			double targetTime = Double.parseDouble(props.getProperty("Target Time", DEFAULT_TARGET_TIME));
+			ret = new SendableCANPIDController(max, targetZone, targetTime);
+		} else {
+			double targetZone = Double.parseDouble(DEFAULT_TARGET_ZONE);
+			double targetTime = Double.parseDouble(DEFAULT_TARGET_TIME);
+			ret = new SendableCANPIDController(max, targetZone, targetTime);
+		}
+		ret.setListener(()->saveCANPID(ret, path));
 		return ret;
 	}
 	

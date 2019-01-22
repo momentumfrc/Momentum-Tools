@@ -22,7 +22,7 @@ public class MomentumPID implements Sendable {
 	private long lastTime;
 	private boolean enabled;
 	
-	private Runnable updateListener = ()->{};
+	private PIDConstantUpdateListener updateListener = ()->{};
 	
 	public MomentumPID(String name, double kP, double kI, double kD, double kF, double iErrZone, double targetZone, double targetTime, PIDSource input, PIDOutput output) {
 		this.name = name;
@@ -162,30 +162,30 @@ public class MomentumPID implements Sendable {
 	
 	public void setP(double p) {
 		kP = p;
-		updateListener.run();
+		updateListener.update();
 	}
 	public void setI(double i) {
 		kI = i;
-		updateListener.run();
+		updateListener.update();
 	}
 	public void setD(double d) {
 		kD = d;
-		updateListener.run();
+		updateListener.update();
 	}
 	public void setF(double f) {
 		kF = f;
-		updateListener.run();
+		updateListener.update();
 	}
 	public void setErrZone(double zone) {
 		iErrZone = zone;
-		updateListener.run();
+		updateListener.update();
 	}
 	public void setTargetZone(double zone) {
 		targetZone = zone;
-		updateListener.run();
+		updateListener.update();
 	}
 	
-	public void setListener(Runnable listener) {
+	public void setListener(PIDConstantUpdateListener listener) {
 		updateListener = listener;
 	}
 	
