@@ -20,7 +20,7 @@ public final class MomentumPIDControllerType extends ComplexDataType<MomentumPID
 
     @Override 
     public MomentumPIDControllerData getDefaultValue() {
-        return new MomentumPIDControllerData(0, 0, 0, 0, 0, 0, 0, 0, false);
+        return new MomentumPIDControllerData(0, 0, 0, 0, 0, 0, 0, 0, false, 0, 0);
     }
     
 }

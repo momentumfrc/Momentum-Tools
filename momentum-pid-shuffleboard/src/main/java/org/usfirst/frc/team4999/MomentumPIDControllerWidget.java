@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.control.Label;
 
 @Description(name="Momentum PID Controller", dataTypes=MomentumPIDControllerData.class)
 @ParametrizedController("MomentumPIDControllerWidget.fxml")
@@ -36,6 +37,11 @@ public class MomentumPIDControllerWidget extends SimpleAnnotatedWidget<MomentumP
     @FXML
     private ToggleSwitch enableToggle;
 
+    @FXML
+    private Label currentLabel;
+    @FXML
+    private Label outputLabel;
+
     private boolean togglingFromDataChange = true;
 
     @FXML
@@ -53,6 +59,8 @@ public class MomentumPIDControllerWidget extends SimpleAnnotatedWidget<MomentumP
             togglingFromDataChange = true;
             enableToggle.setSelected(newData.isEnabled());
             togglingFromDataChange = false;
+            currentLabel.setText(Double.toString(newData.getCurrent()));
+            outputLabel.setText(Double.toString(newData.getOutput()));
         });
 
         actOnFocusLost(pField);

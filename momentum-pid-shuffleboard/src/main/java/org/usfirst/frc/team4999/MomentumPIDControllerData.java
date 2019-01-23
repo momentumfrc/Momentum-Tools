@@ -18,8 +18,10 @@ public final class MomentumPIDControllerData extends ComplexData<MomentumPIDCont
     private final double targetTime;
     private final double setpoint;
     private final boolean enabled;
+    private final double current;
+    private final double output;
 
-    public MomentumPIDControllerData(double p, double i, double d, double f, double errZone, double targetZone, double targetTime, double setpoint, boolean enabled) {
+    public MomentumPIDControllerData(double p, double i, double d, double f, double errZone, double targetZone, double targetTime, double setpoint, boolean enabled, double current, double output) {
         this.p = p;
         this.i = i;
         this.d = d;
@@ -29,6 +31,8 @@ public final class MomentumPIDControllerData extends ComplexData<MomentumPIDCont
         this.targetTime = targetTime;
         this.setpoint = setpoint;
         this.enabled = enabled;
+        this.current = current;
+        this.output = output;
     }
 
     /**
@@ -44,7 +48,9 @@ public final class MomentumPIDControllerData extends ComplexData<MomentumPIDCont
             (double)map.getOrDefault("targetZone", 0.0),
             (double)map.getOrDefault("targetTime", 0.0),
             (double)map.getOrDefault("setpoint", 0.0),
-            (boolean)map.getOrDefault("enabled", false));
+            (boolean)map.getOrDefault("enabled", false),
+            (double)map.getOrDefault("current", 0.0),
+            (double)map.getOrDefault("output", 0.0));
     }
 
     public double getP() {
@@ -83,40 +89,48 @@ public final class MomentumPIDControllerData extends ComplexData<MomentumPIDCont
         return enabled;
     }
 
+    public double getCurrent() {
+        return current;
+    }
+
+    public double getOutput() {
+        return output;
+    }
+
     public MomentumPIDControllerData withP(double p) {
-        return new MomentumPIDControllerData(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled);
+        return new MomentumPIDControllerData(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled, current, output);
     }
 
     public MomentumPIDControllerData withI(double i) {
-        return new MomentumPIDControllerData(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled);
+        return new MomentumPIDControllerData(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled, current, output);
     }
 
     public MomentumPIDControllerData withD(double d) {
-        return new MomentumPIDControllerData(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled);
+        return new MomentumPIDControllerData(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled, current, output);
     }
 
     public MomentumPIDControllerData withF(double f) {
-        return new MomentumPIDControllerData(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled);
+        return new MomentumPIDControllerData(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled, current, output);
     }
 
     public MomentumPIDControllerData withErrZone(double errZone) {
-        return new MomentumPIDControllerData(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled);
+        return new MomentumPIDControllerData(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled, current, output);
     }
 
     public MomentumPIDControllerData withTargetZone(double targetZone) {
-        return new MomentumPIDControllerData(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled);
+        return new MomentumPIDControllerData(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled, current, output);
     }
 
     public MomentumPIDControllerData withTargetTime(double targetTime) {
-        return new MomentumPIDControllerData(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled);
+        return new MomentumPIDControllerData(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled, current, output);
     }
 
     public MomentumPIDControllerData withSetpoint(double setpoint) {
-        return new MomentumPIDControllerData(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled);
+        return new MomentumPIDControllerData(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled, current, output);
     }
 
     public MomentumPIDControllerData withEnabled(boolean enabled) {
-        return new MomentumPIDControllerData(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled);
+        return new MomentumPIDControllerData(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled, current, output);
     }
 
     @Override
@@ -131,6 +145,8 @@ public final class MomentumPIDControllerData extends ComplexData<MomentumPIDCont
         .put("targetTime", targetTime)
         .put("setpoint", setpoint)
         .put("enabled", enabled)
+        .put("current", current)
+        .put("output", output)
         .build();
     }
 
@@ -151,24 +167,26 @@ public final class MomentumPIDControllerData extends ComplexData<MomentumPIDCont
             && this.targetZone == that.targetZone
             && this.targetTime == that.targetTime
             && this.setpoint == that.setpoint
-            && this.enabled == that.enabled;
+            && this.enabled == that.enabled
+            && this.current == that.current
+            && this.output == that.output;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled);
+        return Objects.hash(p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled, current, output);
     }
 
     @Override
     public String toString() {
-        return String.format("MomentumPIDControllerData(p=%s, i=%s, d=%s, f=%s, errZone=%s, targetZone=%s, targetTime=%s, setpoint=%s, enabled=%s)",
-        p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled);
+        return String.format("MomentumPIDControllerData(p=%s, i=%s, d=%s, f=%s, errZone=%s, targetZone=%s, targetTime=%s, setpoint=%s, enabled=%s, current=%s, output=%s)",
+        p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled, current, output);
     }
 
     @Override
     public String toHumanReadableString() {
-        return String.format("p=%.3f, i=%.3f, d=%.3f, f=%.3f, errZone=%.3f, targetZone=%.3f, targetTime=%.3f, setpoint=%.3f, enabled=%s",
-        p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled);
+        return String.format("p=%.3f, i=%.3f, d=%.3f, f=%.3f, errZone=%.3f, targetZone=%.3f, targetTime=%.3f, setpoint=%.3f, enabled=%s, current=%.3f, output=%.3f",
+        p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled, current, output);
     }
 
 }

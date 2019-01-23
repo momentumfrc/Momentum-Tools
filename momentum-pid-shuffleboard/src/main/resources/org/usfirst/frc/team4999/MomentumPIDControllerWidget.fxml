@@ -10,7 +10,7 @@
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="org.usfirst.frc.team4999.MomentumPIDControllerWidget"
           fx:id="root"
-          minWidth="224" minHeight="348"
+          minWidth="224" minHeight="400"
           hgap="4" vgap="4">
     <columnConstraints>
         <ColumnConstraints minWidth="80" prefWidth="80" maxWidth="80"/>
@@ -37,4 +37,9 @@
     <NumberField fx:id="targetTimeField" onAction="#setTargetTime" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.hgrow="ALWAYS"/>
     <NumberField fx:id="setpointField" onAction="#setSetpoint" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.hgrow="ALWAYS"/>
     <ToggleSwitch fx:id="enableToggle" maxWidth="0" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+    <Label text="Current" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
+    <Label text="Output" GridPane.columnIndex="0" GridPane.rowIndex="10"/>
+    <Label fx:id="currentLabel" style="-fx-padding: 4px;" GridPane.columnIndex="1" GridPane.rowIndex="9" GridPane.hgrow="ALWAYS"/>
+    <Label fx:id="outputLabel" style="-fx-padding: 4px;" GridPane.columnIndex="1" GridPane.rowIndex="10" GridPane.hgrow="ALWAYS"/>
+
 </GridPane>

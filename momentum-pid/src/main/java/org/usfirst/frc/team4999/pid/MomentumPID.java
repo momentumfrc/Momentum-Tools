@@ -158,6 +158,9 @@ public class MomentumPID implements Sendable {
 	public double getTargetZone() {
 		return targetZone;
 	}
+	public double getCurrent() {
+		return this.source.pidGet();
+	}
 	
 	public void setP(double p) {
 		kP = p;
@@ -208,6 +211,7 @@ public class MomentumPID implements Sendable {
 		this.subsystem = subsystem;		
 	}
 
+
 	@Override
 	public void initSendable(SendableBuilder builder) {
 		builder.setSmartDashboardType("MomentumPIDController");
@@ -220,6 +224,8 @@ public class MomentumPID implements Sendable {
 		builder.addDoubleProperty("targetTime", this::getTargetTime, this::setTargetTime);
 		builder.addDoubleProperty("setpoint", this::getSetpoint, this::setSetpoint);
 		builder.addBooleanProperty("enabled", this::isEnabled, this::setEnabled);
+		builder.addDoubleProperty("current", this::getCurrent, null);
+		builder.addDoubleProperty("output", this::get, null);
 	}
 	
 

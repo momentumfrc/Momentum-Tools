@@ -16,7 +16,7 @@ import java.util.Map;
 @Description(
     group = "org.usfirst.frc.team4999",
     name="Momentum PID Editor",
-    version="1.0.0",
+    version="1.1.0",
     summary="A plugin to configure MomentumPID Controllers"
 )
 public class MomentumPIDPlugin extends Plugin {

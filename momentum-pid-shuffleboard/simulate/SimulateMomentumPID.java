@@ -18,12 +18,14 @@ public class SimulateMomentumPID {
     private final NetworkTableEntry targetTime_entry;
     private final NetworkTableEntry setpoint_entry;
     private final NetworkTableEntry enabled_entry;
+    private final NetworkTableEntry current_entry;
+    private final NetworkTableEntry output_entry;
 
     private int update = 1000;
 
     private static final int ENTRYFLAGS = EntryListenerFlags.kImmediate | EntryListenerFlags.kNew | EntryListenerFlags.kUpdate;
 
-    private double p, i, d, f, errZone, targetZone, targetTime, setpoint;
+    private double p, i, d, f, errZone, targetZone, targetTime, setpoint, current, output;
     private boolean enabled;
 
     private final String name = "Test MomentumPID";
@@ -44,6 +46,8 @@ public class SimulateMomentumPID {
         targetTime_entry = sub_table.getEntry("targetTime");
         setpoint_entry = sub_table.getEntry("setpoint");
         enabled_entry = sub_table.getEntry("enabled");
+        current_entry = sub_table.getEntry("current");
+        output_entry = sub_table.getEntry("output");
 
         p_entry.setDouble(p);
         i_entry.setDouble(i);
@@ -54,6 +58,8 @@ public class SimulateMomentumPID {
         targetTime_entry.setDouble(targetTime);
         setpoint_entry.setDouble(setpoint);
         enabled_entry.setBoolean(enabled);
+        current_entry.setDouble(current);
+        output_entry.setDouble(output);
         
     }
     
@@ -69,6 +75,8 @@ public class SimulateMomentumPID {
         targetTime_entry.addListener(entry -> {if(entry.value.isDouble()){targetTime = entry.value.getDouble();}}, ENTRYFLAGS);
         setpoint_entry.addListener(entry -> {if(entry.value.isDouble()){setpoint = entry.value.getDouble();}}, ENTRYFLAGS);
         enabled_entry.addListener(entry -> {if(entry.value.isBoolean()){enabled = entry.value.getBoolean();}}, ENTRYFLAGS);
+        current_entry.addListener(entry -> {if(entry.value.isDouble()){current = entry.value.getDouble();}}, ENTRYFLAGS);
+        output_entry.addListener(entry -> {if(entry.value.isDouble()){output = entry.value.getDouble();}}, ENTRYFLAGS);
         
 
         while(true){
@@ -82,6 +90,8 @@ public class SimulateMomentumPID {
                 targetZone = Math.random() * 10;
                 targetTime = Math.random() * 10;
                 setpoint = Math.random() * 10;
+                current = Math.random() * 10;
+                output = Math.random() * 10;
                 p_entry.setDouble(p);
                 i_entry.setDouble(i);
                 d_entry.setDouble(d);
@@ -90,10 +100,12 @@ public class SimulateMomentumPID {
                 targetZone_entry.setDouble(targetZone);
                 targetTime_entry.setDouble(targetTime);
                 setpoint_entry.setDouble(setpoint);
+                current_entry.setDouble(current);
+                output_entry.setDouble(output);
             }
 
-            System.out.format("p:%.3f, i:%.3f, d:%.3f, f:%.3f, errZone:%.3f, targetZone:%.3f, targetTime:%.3f, setpoint:%.3f, enabled:%s\n",
-            p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled);
+            System.out.format("p:%.3f, i:%.3f, d:%.3f, f:%.3f, errZone:%.3f, targetZone:%.3f, targetTime:%.3f, setpoint:%.3f, enabled:%s, current:%.3f, output:%.3f\n",
+            p, i, d, f, errZone, targetZone, targetTime, setpoint, enabled, current, output);
 
             try {
                 Thread.sleep(update);

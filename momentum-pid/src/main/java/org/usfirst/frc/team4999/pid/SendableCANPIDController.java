@@ -108,6 +108,28 @@ public class SendableCANPIDController implements Sendable {
     public ControlType getControlType() {
         return controltype;
     }
+
+    public double getCurrent() {
+        switch(controltype) {
+            case kPosition:
+                return encoder.getPosition();
+            case kVelocity:
+                return encoder.getVelocity();
+            case kDutyCycle:
+                // NOTE: I think this is right?
+                return max.getAppliedOutput();
+            case kVoltage:
+                // NOTE: This is untested, and probably wrong
+                // REV doesn't document very well what kVoltage control is, so I'm not sure what to put here
+                return max.getBusVoltage();
+        }
+        return 0;
+    }
+
+    public double get() {
+        // Again, not sure about this
+        return this.max.getAppliedOutput();
+    }
     
     public void setP(double p) {
         kP = p;
@@ -207,25 +229,7 @@ public class SendableCANPIDController implements Sendable {
     }
 
     public boolean onTarget() {
-        double value = 0;
-        switch(controltype) {
-            case kPosition:
-                value = encoder.getPosition();
-                break;
-            case kVelocity:
-                value = encoder.getVelocity();
-                break;
-            case kDutyCycle:
-                // NOTE: I think this is right?
-                value = max.getAppliedOutput();
-                break;
-            case kVoltage:
-                // NOTE: This is untested, and probably wrong
-                // REV doesn't document very well what kVoltage control is, so I'm not sure what to put here
-                value = max.getBusVoltage();
-                break;
-        }
-        return Math.abs(setpoint - value) < targetZone;
+        return Math.abs(setpoint - getCurrent()) < targetZone;
     }
     
     public boolean onTargetForTime() {
@@ -283,7 +287,9 @@ public class SendableCANPIDController implements Sendable {
 		builder.addDoubleProperty("targetZone", this::getTargetZone, this::setTargetZone);
 		builder.addDoubleProperty("targetTime", this::getTargetTime, this::setTargetTime);
 		builder.addDoubleProperty("setpoint", this::getSetpoint, this::setSetpoint);
-		builder.addBooleanProperty("enabled", this::isEnabled, this::setEnabled);
+        builder.addBooleanProperty("enabled", this::isEnabled, this::setEnabled);
+        builder.addDoubleProperty("current", this::getCurrent, null);
+        builder.addDoubleProperty("output", this::get, null);
 	}
 
 }
