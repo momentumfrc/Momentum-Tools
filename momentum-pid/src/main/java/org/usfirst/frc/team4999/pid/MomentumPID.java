@@ -3,7 +3,6 @@ package org.usfirst.frc.team4999.pid;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.Sendable;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 
 public class MomentumPID implements Sendable {
@@ -12,10 +11,10 @@ public class MomentumPID implements Sendable {
 	private double result = 0;
 	private PIDSource source;
 	private PIDOutput output;
-	private double setpoint;
+	private double setpoint = 0;
 	private String name, subsystem = "Ungrouped";
-	
-	private Timer onTargetTimer;
+
+	private long onTargetTime;
 	
 	private double totalErr;
 	private double lastErr;
@@ -36,15 +35,14 @@ public class MomentumPID implements Sendable {
 		this.kD = kD;
 		this.kF = kF;
 		this.targetTime = targetTime;
-		onTargetTimer = new Timer();
-		onTargetTimer.start();
-		lastTime = (long) Timer.getFPGATimestamp() * 1000;
+		onTargetTime = System.currentTimeMillis();
+		lastTime = System.currentTimeMillis();
 	}
 
 	
 	public void calculate() {
 		// calculate time for dT
-		long now = (long)(Timer.getFPGATimestamp() * 1000);
+		long now = System.currentTimeMillis();
 		long dTime = now - lastTime;
 		lastTime = now;
 		
@@ -98,16 +96,17 @@ public class MomentumPID implements Sendable {
 	}
 	
 	public boolean onTargetForTime() {
-		if(onTarget() && onTargetTimer.hasPeriodPassed(targetTime)) {
+		if(onTarget() && System.currentTimeMillis() - onTargetTime > (targetTime * 1000)) {
 			return true;
 		} else if (!onTarget()) {
-			onTargetTimer.reset();
+			onTargetTime = System.currentTimeMillis();
 		}
 		return false;
 	}
 	
 	public void setTargetTime(double time) {
 		targetTime = time;
+		updateListener.update();
 	}
 	public double getTargetTime() {
 		return targetTime;

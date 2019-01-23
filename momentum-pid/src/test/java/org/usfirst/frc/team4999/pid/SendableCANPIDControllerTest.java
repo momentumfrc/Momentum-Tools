@@ -80,7 +80,7 @@ public class SendableCANPIDControllerTest {
     @Test
     public void testP() {
         double p = this.mocked_p;
-        SendableCANPIDController controller = new SendableCANPIDController("TestController", mockedSpark, targetZone, targetTime);
+        SendableCANPIDController controller = new SendableCANPIDController("Test Controller", mockedSpark, targetZone, targetTime);
         assertEquals(p, controller.getP(), DELTA);
         p = 8.6;
         controller.setP(p);
@@ -101,7 +101,7 @@ public class SendableCANPIDControllerTest {
     @Test
     public void testI() {
         double i = this.mocked_i;
-        SendableCANPIDController controller = new SendableCANPIDController("TestController", mockedSpark, targetZone, targetTime);
+        SendableCANPIDController controller = new SendableCANPIDController("Test Controller", mockedSpark, targetZone, targetTime);
         assertEquals(i, controller.getI(), DELTA);
         i = 8.6;
         controller.setI(i);
@@ -122,7 +122,7 @@ public class SendableCANPIDControllerTest {
     @Test
     public void testD() {
         double d = this.mocked_d;
-        SendableCANPIDController controller = new SendableCANPIDController("TestController", mockedSpark, targetZone, targetTime);
+        SendableCANPIDController controller = new SendableCANPIDController("Test Controller", mockedSpark, targetZone, targetTime);
         assertEquals(d, controller.getD(), DELTA);
         d = 8.6;
         controller.setD(d);
@@ -143,7 +143,7 @@ public class SendableCANPIDControllerTest {
     @Test
     public void testF() {
         double f = this.mocked_f;
-        SendableCANPIDController controller = new SendableCANPIDController("TestController", mockedSpark, targetZone, targetTime);
+        SendableCANPIDController controller = new SendableCANPIDController("Test Controller", mockedSpark, targetZone, targetTime);
         assertEquals(f, controller.getF(), DELTA);
         f = 8.6;
         controller.setF(f);
@@ -164,7 +164,7 @@ public class SendableCANPIDControllerTest {
     @Test
     public void testErrZone() {
         double errZone = this.mocked_errZone;
-        SendableCANPIDController controller = new SendableCANPIDController("TestController", mockedSpark, targetZone, targetTime);
+        SendableCANPIDController controller = new SendableCANPIDController("Test Controller", mockedSpark, targetZone, targetTime);
         assertEquals(errZone, controller.getErrZone(), DELTA);
         errZone = 8.6;
         controller.setErrZone(errZone);
@@ -185,7 +185,7 @@ public class SendableCANPIDControllerTest {
     @Test
     public void testTargetZone() {
         double targetZone = this.targetZone;
-        SendableCANPIDController controller = new SendableCANPIDController("TestController", mockedSpark, targetZone, targetTime);
+        SendableCANPIDController controller = new SendableCANPIDController("Test Controller", mockedSpark, targetZone, targetTime);
         assertEquals(targetZone, controller.getTargetZone(), DELTA);
         targetZone = 56.45;
         controller.setTargetZone(targetZone);
@@ -195,7 +195,7 @@ public class SendableCANPIDControllerTest {
     @Test
     public void testTargetTime() {
         double targetTime = this.targetTime;
-        SendableCANPIDController controller = new SendableCANPIDController("TestController", mockedSpark, targetZone, targetTime);
+        SendableCANPIDController controller = new SendableCANPIDController("Test Controller", mockedSpark, targetZone, targetTime);
         assertEquals(targetTime, controller.getTargetTime(), DELTA);
         targetTime = 40.6;
         controller.setTargetTime(targetTime);
@@ -204,7 +204,7 @@ public class SendableCANPIDControllerTest {
 
     @Test
     public void testSetpoint() {
-        SendableCANPIDController controller = new SendableCANPIDController("TestController", mockedSpark, targetZone, targetTime);
+        SendableCANPIDController controller = new SendableCANPIDController("Test Controller", mockedSpark, targetZone, targetTime);
         assertEquals(0, controller.getSetpoint(), DELTA);
         double setpoint = 10;
         controller.setSetpoint(setpoint);
@@ -213,7 +213,7 @@ public class SendableCANPIDControllerTest {
 
     @Test
     public void testEnabled() {
-        SendableCANPIDController controller = new SendableCANPIDController("TestController", mockedSpark, targetZone, targetTime);
+        SendableCANPIDController controller = new SendableCANPIDController("Test Controller", mockedSpark, targetZone, targetTime);
         assertTrue(controller.isEnabled());
         controller.disable();
         assertFalse(controller.isEnabled());
@@ -227,7 +227,7 @@ public class SendableCANPIDControllerTest {
 
     @Test
     public void testControlType() {
-        SendableCANPIDController controller = new SendableCANPIDController("TestController", mockedSpark, targetZone, targetTime);
+        SendableCANPIDController controller = new SendableCANPIDController("Test Controller", mockedSpark, targetZone, targetTime);
         assertEquals(controller.getControlType(), ControlType.kPosition);
         controller.setControlType(ControlType.kVelocity);
         assertEquals(controller.getControlType(), ControlType.kVelocity);
@@ -236,7 +236,7 @@ public class SendableCANPIDControllerTest {
     @Test
     public void testOnTarget() {
         double targetZone = 1;
-        SendableCANPIDController controller = new SendableCANPIDController("TestController", mockedSpark, targetZone, targetTime);
+        SendableCANPIDController controller = new SendableCANPIDController("Test Controller", mockedSpark, targetZone, targetTime);
         controller.setSetpoint(10);
         when(mockedEncoder.getPosition()).thenReturn(5.0);
         assertFalse(controller.onTarget());
@@ -252,7 +252,7 @@ public class SendableCANPIDControllerTest {
     public void testOnTargetForTime() {
         double targetZone = 1;
         double targetTime = 3;
-        SendableCANPIDController controller = new SendableCANPIDController("TestController", mockedSpark, targetZone, targetTime);
+        SendableCANPIDController controller = new SendableCANPIDController("Test Controller", mockedSpark, targetZone, targetTime);
         controller.setSetpoint(10);
         when(mockedEncoder.getPosition()).thenReturn(5.0);
         assertFalse(controller.onTargetForTime());
@@ -276,7 +276,7 @@ public class SendableCANPIDControllerTest {
     @Test
     public void testBurnFlash() {
         when(mockedSpark.burnFlash()).then(new Answer<CANError>() { public CANError answer(InvocationOnMock i) { burned = true; return null;}});
-        SendableCANPIDController controller = new SendableCANPIDController("TestController", mockedSpark, targetZone, targetTime);
+        SendableCANPIDController controller = new SendableCANPIDController("Test Controller", mockedSpark, targetZone, targetTime);
 
         controller.saveValues();
         assertFalse(burned);
@@ -310,7 +310,7 @@ public class SendableCANPIDControllerTest {
     boolean updated = false;
     @Test
     public void testUpdate() {
-        SendableCANPIDController controller = new SendableCANPIDController("TestController", mockedSpark, targetZone, targetTime);
+        SendableCANPIDController controller = new SendableCANPIDController("Test Controller", mockedSpark, targetZone, targetTime);
         controller.setListener(()->{updated = true;});
         controller.setP(5);
         assertTrue(updated);
@@ -336,6 +336,22 @@ public class SendableCANPIDControllerTest {
         controller.setControlType(ControlType.kVelocity);
         assertTrue(updated);
         updated = false;
+    }
+
+    @Test
+    public void testName() {
+        SendableCANPIDController controller = new SendableCANPIDController("Test Controller", mockedSpark, targetZone, targetTime);
+        assertEquals("Test Controller", controller.getName());
+        controller.setName("Some Vital PID Controller");
+        assertEquals("Some Vital PID Controller", controller.getName());
+    }
+
+    @Test 
+    public void testSubsystem() {
+        SendableCANPIDController controller = new SendableCANPIDController("Test Controller", mockedSpark, targetZone, targetTime);
+        assertEquals("Ungrouped", controller.getSubsystem());
+        controller.setSubsystem("This Vital Subsystem");
+        assertEquals("This Vital Subsystem", controller.getSubsystem());
     }
 
 }

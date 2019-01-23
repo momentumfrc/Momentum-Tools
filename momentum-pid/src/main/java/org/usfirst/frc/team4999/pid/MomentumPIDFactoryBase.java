@@ -110,11 +110,11 @@ public abstract class MomentumPIDFactoryBase {
 			Properties props = openFile(path);
 			double targetZone = Double.parseDouble(props.getProperty("Target Zone", DEFAULT_TARGET_ZONE));
 			double targetTime = Double.parseDouble(props.getProperty("Target Time", DEFAULT_TARGET_TIME));
-			ret = new SendableCANPIDController(max, targetZone, targetTime);
+			ret = new SendableCANPIDController(name, max, targetZone, targetTime);
 		} else {
 			double targetZone = Double.parseDouble(DEFAULT_TARGET_ZONE);
 			double targetTime = Double.parseDouble(DEFAULT_TARGET_TIME);
-			ret = new SendableCANPIDController(max, targetZone, targetTime);
+			ret = new SendableCANPIDController(name, max, targetZone, targetTime);
 		}
 		ret.setListener(()->saveCANPID(ret, path));
 		return ret;
