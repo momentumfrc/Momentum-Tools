@@ -36,7 +36,7 @@
     <dependency>
       <groupId>edu.wpi.first.wpilibj</groupId>
       <artifactId>wpilibj-java</artifactId>
-      <version>2019.2.1</version>
+      <version>2019.4.1</version>
     </dependency>
   </dependencies>
   
