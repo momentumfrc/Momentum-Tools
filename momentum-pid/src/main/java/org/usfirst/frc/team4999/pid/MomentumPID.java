@@ -3,9 +3,10 @@ package org.usfirst.frc.team4999.pid;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.Sendable;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 
-public class MomentumPID implements Sendable {
+public class MomentumPID implements MotionController, Sendable {
 	private double kP, kI, kD, kF, iErrZone;
 	private double targetZone, targetTime;
 	private double result = 0;
@@ -14,11 +15,11 @@ public class MomentumPID implements Sendable {
 	private double setpoint = 0;
 	private String name, subsystem = "Ungrouped";
 
-	private long onTargetTime;
+	private double onTargetTime;
 	
 	private double totalErr;
 	private double lastErr;
-	private long lastTime;
+	private double lastTime;
 	private boolean enabled;
 	
 	private PIDConstantUpdateListener updateListener = ()->{};
@@ -35,15 +36,20 @@ public class MomentumPID implements Sendable {
 		this.kD = kD;
 		this.kF = kF;
 		this.targetTime = targetTime;
-		onTargetTime = System.currentTimeMillis();
-		lastTime = System.currentTimeMillis();
+		onTargetTime = getTimeMillis();
+		lastTime = getTimeMillis();
+	}
+
+	private double getTimeMillis() {
+		return Timer.getFPGATimestamp() * 1000;
 	}
 
 	
+	@Override
 	public void calculate() {
 		// calculate time for dT
-		long now = System.currentTimeMillis();
-		long dTime = now - lastTime;
+		double now = getTimeMillis();
+		double dTime = now - lastTime;
 		lastTime = now;
 		
 		// Calculate error
@@ -70,6 +76,7 @@ public class MomentumPID implements Sendable {
 			output.pidWrite(result);
 	}
 	
+	@Override
 	public void zeroOutput() {
 		result = 0;
 		if(output != null)
@@ -96,10 +103,10 @@ public class MomentumPID implements Sendable {
 	}
 	
 	public boolean onTargetForTime() {
-		if(onTarget() && System.currentTimeMillis() - onTargetTime > (targetTime * 1000)) {
+		if(onTarget() && getTimeMillis() - onTargetTime > (targetTime * 1000)) {
 			return true;
 		} else if (!onTarget()) {
-			onTargetTime = System.currentTimeMillis();
+			onTargetTime = getTimeMillis();
 		}
 		return false;
 	}
@@ -116,6 +123,7 @@ public class MomentumPID implements Sendable {
 	 * Gets the most recent result of the PID calculation
 	 * @return The most recent result of the PID calculation
 	 */
+	@Override
 	public double get() {
 		return result;
 	}
@@ -137,6 +145,7 @@ public class MomentumPID implements Sendable {
 		else
 			disable();
 	}
+	@Override
 	public boolean isEnabled() {
 		return enabled;
 	}
