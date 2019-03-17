@@ -1,7 +1,7 @@
 {
     "fileName": "momentum-pid.json",
     "name": "Momentum_PID",
-    "version": "1.1",
+    "version": "1.2",
     "uuid": "dfc7872b-a158-4b7b-977a-5b8d7466605b",
     "mavenUrls": [
         "https://raw.githubusercontent.com/momentumfrc/Momentum-Tools/master/mvn-repo"
