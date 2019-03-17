@@ -26,6 +26,11 @@ public abstract class MomentumPIDFactoryBase {
 	protected static final String DEFAULT_TARGET_TIME = "0.5";
 	
 	protected static final MomentumPIDRunner calculator = new MomentumPIDRunner();
+
+	@FunctionalInterface
+	private static interface MomentumPIDBaseSupplier {
+		MomentumPIDBase supply(double kP, double kI, double kD, double kF, double iErrZone, double targetZone, double targetTime);
+	}
 	
 	public static void addToCalculator(MomentumPID cont) {
 		calculator.addController(cont);
@@ -53,7 +58,7 @@ public abstract class MomentumPIDFactoryBase {
 		}
 	}
 	
-	private static void savePID(MomentumPID pid, String path) {
+	private static void savePID(MomentumPIDBase pid, String path) {
 		Properties props = new Properties();
 		props.put("P", String.format("%f", pid.getP()));
 		props.put("I", String.format("%f", pid.getI()));
@@ -64,20 +69,14 @@ public abstract class MomentumPIDFactoryBase {
 		props.put("Target Time", String.format("%f", pid.getTargetTime()));
 		saveFile(props, path);
 	}
-
-	private static void saveCANPID(SendableCANPIDController pid, String path) {
-		Properties props = new Properties();
-		props.put("Target Zone", String.format("%f", pid.getTargetZone()));
-		props.put("Target Time", String.format("%f", pid.getTargetTime()));
-	}
 	
 	private static boolean checkFile(String file) {
 		File f = new File(file);
 		return f.exists() && !f.isDirectory();
 	}
 	
-	protected static MomentumPID loadPID(String name, String path, PIDSource source, PIDOutput output) {
-		MomentumPID ret;
+	private static MomentumPIDBase loadPIDBase(String path, MomentumPIDBaseSupplier supplier) {
+		MomentumPIDBase ret;
 		if(checkFile(path)) {
 			Properties props = openFile(path);
 			double p = Double.parseDouble(props.getProperty("P", DEFAULT_P));
@@ -87,7 +86,7 @@ public abstract class MomentumPIDFactoryBase {
 			double errZone = Double.parseDouble(props.getProperty("Error Zone", DEFAULT_ERR_ZONE));
 			double targetZone = Double.parseDouble(props.getProperty("Target Zone", DEFAULT_TARGET_ZONE));
 			double targetTime = Double.parseDouble(props.getProperty("Target Time", DEFAULT_TARGET_TIME));
-			ret = new MomentumPID(name,p,i,d,f,errZone,targetZone,targetTime,source,output);
+			ret = supplier.supply(p,i,d,f,errZone,targetZone,targetTime);
 		} else {
 			double p = Double.parseDouble(DEFAULT_P);
 			double i = Double.parseDouble(DEFAULT_I);
@@ -96,27 +95,22 @@ public abstract class MomentumPIDFactoryBase {
 			double errZone = Double.parseDouble(DEFAULT_ERR_ZONE);
 			double targetZone = Double.parseDouble(DEFAULT_TARGET_ZONE);
 			double targetTime = Double.parseDouble(DEFAULT_TARGET_TIME);
-			ret = new MomentumPID(name,p,i,d,f,errZone,targetZone,targetTime,source,output);
-			ret.setTargetTime(targetTime);
+			ret = supplier.supply(p,i,d,f,errZone,targetZone,targetTime);;
 		}
 		ret.setListener(()->savePID(ret, path));
+		return ret;
+	}
+
+	protected static MomentumPIDBase loadPID(String name, String path, PIDSource source, PIDOutput output) {
+		MomentumPIDBaseSupplier supplier = (double kP, double kI, double kD, double kF, double iErrZone, double targetZone, double targetTime) -> new MomentumPID(name, kP, kI, kD, kF, iErrZone, targetZone, targetTime, source, output);
+		MomentumPID ret = (MomentumPID) loadPIDBase(path, supplier);
 		addToCalculator(ret);
 		return ret;
 	}
 
 	protected static SendableCANPIDController loadCANPID(String name, String path, CANSparkMax max) {
-		SendableCANPIDController ret;
-		if(checkFile(path)) {
-			Properties props = openFile(path);
-			double targetZone = Double.parseDouble(props.getProperty("Target Zone", DEFAULT_TARGET_ZONE));
-			double targetTime = Double.parseDouble(props.getProperty("Target Time", DEFAULT_TARGET_TIME));
-			ret = new SendableCANPIDController(name, max, targetZone, targetTime);
-		} else {
-			double targetZone = Double.parseDouble(DEFAULT_TARGET_ZONE);
-			double targetTime = Double.parseDouble(DEFAULT_TARGET_TIME);
-			ret = new SendableCANPIDController(name, max, targetZone, targetTime);
-		}
-		ret.setListener(()->saveCANPID(ret, path));
+		MomentumPIDBaseSupplier supplier = (double kP, double kI, double kD, double kF, double iErrZone, double targetZone, double targetTime) -> new SendableCANPIDController(name, kP, kI, kD, kF, iErrZone, targetZone, targetTime, false, max);
+		SendableCANPIDController ret = (SendableCANPIDController) loadPIDBase(path, supplier);
 		return ret;
 	}
 	
