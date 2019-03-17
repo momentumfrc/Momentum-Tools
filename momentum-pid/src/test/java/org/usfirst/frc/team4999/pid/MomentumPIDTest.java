@@ -120,10 +120,10 @@ public class MomentumPIDTest {
         MomentumPID controller = new MomentumPID("Test Controller", kP, kI, kD, kF, errZone, targetZone, targetTime, mockedSource, mockedOutput);
         double get = 29.3;
         when(mockedSource.pidGet()).thenReturn(get);
-        assertEquals(get, controller.getCurrent(), DELTA);
+        assertEquals(get, controller.getCurrentInput(), DELTA);
         get = -85.4;
         when(mockedSource.pidGet()).thenReturn(get);
-        assertEquals(get, controller.getCurrent(), DELTA);
+        assertEquals(get, controller.getCurrentInput(), DELTA);
     }
 
     @Test

@@ -31,7 +31,31 @@ public class SendableCANPIDController extends MomentumPIDBase {
         orig_kF = controller.getFF();
         orig_errZone = controller.getIZone();
 
+        updateMaxValues();
+
         this.saveOnEnable = saveOnEnable;
+    }
+
+    public SendableCANPIDController(String name, CANSparkMax max, double targetZone, double targetTime) {
+        super(name, 0, 0, 0, 0, 0, targetZone, targetTime);
+        
+        this.max = max;
+        this.controller = max.getPIDController();
+        this.encoder = max.getEncoder();
+
+        setP(controller.getP());
+        setI(controller.getI());
+        setD(controller.getD());
+        setF(controller.getFF());
+        setErrZone(controller.getIZone());
+
+        orig_kP = controller.getP();
+        orig_kI = controller.getI();
+        orig_kD = controller.getD();
+        orig_kF = controller.getFF();
+        orig_errZone = controller.getIZone();
+
+        saveOnEnable = true;
     }
 
     public ControlType getControlType() {
@@ -66,40 +90,30 @@ public class SendableCANPIDController extends MomentumPIDBase {
     @Override
     public void setP(double p) {
         super.setP(p);
-        if(isEnabled()) {
-            controller.setP(p);
-        }
+        controller.setP(p);
     }
 
     @Override
     public void setI(double i) {
         super.setI(i);
-        if(isEnabled()) {
-            controller.setI(i);
-        }
+        controller.setI(i);
     }
 
     @Override
     public void setD(double d) {
         super.setD(d);
-        if(isEnabled()) {
-            controller.setD(d); 
-        }
+        controller.setD(d); 
     }
 
     @Override
     public void setF(double f) {
         super.setF(f);
-        if(isEnabled()) {
-            controller.setFF(f);
-        }
+        controller.setFF(f);
     }
 
     public void setErrZone(double errZone) {
         super.setErrZone(errZone);
-        if(isEnabled()) {
-            controller.setIZone(errZone);
-        }
+        controller.setIZone(errZone);
     }
 
     @Override
@@ -113,9 +127,18 @@ public class SendableCANPIDController extends MomentumPIDBase {
         controller.setReference(getSetpoint(), controltype);
     }
 
+    private void updateMaxValues() {
+        controller.setP(getP());
+        controller.setI(getI());
+        controller.setD(getD());
+        controller.setFF(getF());
+        controller.setIZone(getErrZone());
+    }
+
     @Override
     public void enable() {
         super.enable();
+        updateMaxValues();
         setSetpoint(getSetpoint());
         if(saveOnEnable)
             saveValues();

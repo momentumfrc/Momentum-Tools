@@ -87,11 +87,11 @@ public class SendableCANPIDControllerTest {
         assertEquals(p, this.mocked_p, DELTA);
         assertEquals(p, controller.getP(), DELTA);
         controller.disable();
-        assertEquals(0, this.mocked_p, DELTA);
+        assertEquals(p, this.mocked_p, DELTA);
         assertEquals(p, controller.getP(), DELTA);
         p = 10;
         controller.setP(p);
-        assertEquals(0, this.mocked_p, DELTA);
+        assertEquals(p, this.mocked_p, DELTA);
         assertEquals(p, controller.getP(), DELTA);
         controller.enable();
         assertEquals(p, this.mocked_p, DELTA);
@@ -108,11 +108,11 @@ public class SendableCANPIDControllerTest {
         assertEquals(i, this.mocked_i, DELTA);
         assertEquals(i, controller.getI(), DELTA);
         controller.disable();
-        assertEquals(0, this.mocked_i, DELTA);
+        assertEquals(i, this.mocked_i, DELTA);
         assertEquals(i, controller.getI(), DELTA);
         i = 10;
         controller.setI(i);
-        assertEquals(0, this.mocked_i, DELTA);
+        assertEquals(i, this.mocked_i, DELTA);
         assertEquals(i, controller.getI(), DELTA);
         controller.enable();
         assertEquals(i, this.mocked_i, DELTA);
@@ -129,11 +129,11 @@ public class SendableCANPIDControllerTest {
         assertEquals(d, this.mocked_d, DELTA);
         assertEquals(d, controller.getD(), DELTA);
         controller.disable();
-        assertEquals(0, this.mocked_d, DELTA);
+        assertEquals(d, this.mocked_d, DELTA);
         assertEquals(d, controller.getD(), DELTA);
         d = 10;
         controller.setD(d);
-        assertEquals(0, this.mocked_d, DELTA);
+        assertEquals(d, this.mocked_d, DELTA);
         assertEquals(d, controller.getD(), DELTA);
         controller.enable();
         assertEquals(d, this.mocked_d, DELTA);
@@ -150,11 +150,11 @@ public class SendableCANPIDControllerTest {
         assertEquals(f, this.mocked_f, DELTA);
         assertEquals(f, controller.getF(), DELTA);
         controller.disable();
-        assertEquals(0, this.mocked_f, DELTA);
+        assertEquals(f, this.mocked_f, DELTA);
         assertEquals(f, controller.getF(), DELTA);
         f = 10;
         controller.setF(f);
-        assertEquals(0, this.mocked_f, DELTA);
+        assertEquals(f, this.mocked_f, DELTA);
         assertEquals(f, controller.getF(), DELTA);
         controller.enable();
         assertEquals(f, this.mocked_f, DELTA);
@@ -171,11 +171,11 @@ public class SendableCANPIDControllerTest {
         assertEquals(errZone, this.mocked_errZone, DELTA);
         assertEquals(errZone, controller.getErrZone(), DELTA);
         controller.disable();
-        assertEquals(0, this.mocked_errZone, DELTA);
+        assertEquals(errZone, this.mocked_errZone, DELTA);
         assertEquals(errZone, controller.getErrZone(), DELTA);
         errZone = 10;
         controller.setErrZone(errZone);
-        assertEquals(0, this.mocked_errZone, DELTA);
+        assertEquals(errZone, this.mocked_errZone, DELTA);
         assertEquals(errZone, controller.getErrZone(), DELTA);
         controller.enable();
         assertEquals(errZone, this.mocked_errZone, DELTA);
@@ -214,7 +214,7 @@ public class SendableCANPIDControllerTest {
     @Test
     public void testEnabled() {
         SendableCANPIDController controller = new SendableCANPIDController("Test Controller", mockedSpark, targetZone, targetTime);
-        assertTrue(controller.isEnabled());
+        assertFalse(controller.isEnabled());
         controller.disable();
         assertFalse(controller.isEnabled());
         controller.enable();
@@ -332,10 +332,6 @@ public class SendableCANPIDControllerTest {
         updated = false;
         controller.setTargetTime(5);
         assertTrue(updated);
-        updated = false;
-        controller.setControlType(ControlType.kVelocity);
-        assertTrue(updated);
-        updated = false;
     }
 
     @Test
