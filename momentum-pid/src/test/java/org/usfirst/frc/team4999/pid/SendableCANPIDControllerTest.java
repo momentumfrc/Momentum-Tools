@@ -6,12 +6,14 @@ import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.stubbing.Answer;
 import org.mockito.invocation.InvocationOnMock;
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
+@Ignore
 public class SendableCANPIDControllerTest {
     CANSparkMax mockedSpark;
     CANPIDController mockedPIDController;
