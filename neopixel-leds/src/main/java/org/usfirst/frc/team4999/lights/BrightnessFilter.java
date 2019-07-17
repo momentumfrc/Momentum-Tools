@@ -13,16 +13,19 @@ public class BrightnessFilter {
 	
 	private final String key = "BRIGHTNESS";
 	
-	private final NetworkTableEntry entry;
+	private NetworkTableEntry entry;
 	
 	private BrightnessFilter() {
-		
-		entry = SmartDashboard.getEntry(key);
-		entry.setNumber(brightness);
-		
-		entry.addListener((notification) -> {
-			brightness = truncate(notification.value.getDouble());
-		}, TableEntryListener.kUpdate|TableEntryListener.kImmediate);
+		try {
+			entry = SmartDashboard.getEntry(key);
+			entry.setNumber(brightness);
+			
+			entry.addListener((notification) -> {
+				brightness = truncate(notification.value.getDouble());
+			}, TableEntryListener.kUpdate|TableEntryListener.kImmediate);
+		} catch (java.lang.NoClassDefFoundError e) {
+			System.out.println("No networktables!");
+		}
 		
 	}
 	
@@ -51,6 +54,7 @@ public class BrightnessFilter {
 	}
 	
 	public static Color dimColor(Color in) {
+		register();
 		return new Color(dimValue(in.getRed()), dimValue(in.getGreen()), dimValue(in.getBlue()));
 	}
 

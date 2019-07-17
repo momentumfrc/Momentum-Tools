@@ -4,8 +4,6 @@ import org.usfirst.frc.team4999.lights.Color;
 import org.usfirst.frc.team4999.lights.animations.Animation;
 import org.usfirst.frc.team4999.lights.animations.Solid;
 
-import edu.wpi.first.wpilibj.Timer;
-
 /**
  * Runs in an infinite loop. Displays a frame of {@link Animation}, then waits the duration specified by the animation
  * @author jordan
@@ -16,6 +14,7 @@ class AnimatorThread extends Thread {
 	private Animation current;
 	
 	public AnimatorThread(Display out, Animation current) {
+		super("Animator Thread");
 		this.out = out;
 		this.current = current;
 	}
@@ -89,5 +88,7 @@ public class Animator {
 		animate.setAnimation(newAnimation);
 	}
 	
-
+	public void stopAnimation() {
+		animate.interrupt();
+	}
 }
