@@ -45,6 +45,7 @@ public class AnimationCoordinator {
         base = defaultBase;
         animationTable = new HashMap<String, AnimationHolder>();
         animationStack = new Vector<String>();
+        visibleAnimations = new ArrayList<Animation>();
     }
 
     public void pushAnimation(String key, Animation animation, boolean transparent) {
@@ -88,5 +89,9 @@ public class AnimationCoordinator {
         }
 
         return new Overlay(animationsArray);
+    }
+
+    public void setBase(Animation animation) {
+        this.base = animation;
     }
 }
