@@ -7,10 +7,23 @@ public class Commands {
 	private static final byte SET_SINGLE = 0x02;
 	private static final byte SET_RUN = 0x03;
 	private static final byte SET_STRIDE = 0x04;
+	private static final byte SET_STRIDE_RANGED = 0x05;
+
+	private static byte intToByte(int in) {
+		if(in > 255 || in < 0) {
+			System.out.format("Cannot fit %d in one byte!\n", in);
+			throw new IllegalArgumentException("Input must fit in one unsigned byte");
+		}
+		return (byte) in;
+	}
+
+	private static final int byteToInt(byte in) {
+		return ((int) in) & 0xFF;
+	}
 	
 	private static byte[] setSizeByte(byte[] data) {
 		byte[] out = new byte[data.length + 1];
-		out[0] = (byte) (data.length);
+		out[0] = intToByte(data.length);
 		for(int i = 0; i < data.length; i++) {
 			out[i+1] = data[i];
 		}
@@ -37,10 +50,10 @@ public class Commands {
 	public static Packet makeSingleNoDim(int address, Color color) {
 		byte[] data = {
 				SET_SINGLE,
-				(byte) address, 
-				(byte) color.getRed(),
-				(byte) color.getGreen(),
-				(byte) color.getBlue(),
+				intToByte(address), 
+				intToByte(color.getRed()),
+				intToByte(color.getGreen()),
+				intToByte(color.getBlue())
 		};
 		return new Packet(setSizeByte(data));
 	}
@@ -67,11 +80,11 @@ public class Commands {
 	public static Packet makeRunNoDim(int address, Color color, int length) {
 		byte[] data = {
 				SET_RUN,
-				(byte) address, 
-				(byte) color.getRed(),
-				(byte) color.getGreen(),
-				(byte) color.getBlue(),
-				(byte) length
+				intToByte(address), 
+				intToByte(color.getRed()),
+				intToByte(color.getGreen()),
+				intToByte(color.getBlue()),
+				intToByte(length)
 		};
 		return new Packet(setSizeByte(data));
 	}
@@ -100,14 +113,101 @@ public class Commands {
 	public static Packet makeStrideNoDim(int address, Color color, int length, int stride) {
 		byte[] data = {
 				SET_STRIDE,
-				(byte) address, 
-				(byte) color.getRed(),
-				(byte) color.getGreen(),
-				(byte) color.getBlue(),
-				(byte) length,
-				(byte) stride
+				intToByte(address), 
+				intToByte(color.getRed()),
+				intToByte(color.getGreen()),
+				intToByte(color.getBlue()),
+				intToByte(length),
+				intToByte(stride)
 		};
 		return new Packet(setSizeByte(data));
+	}
+
+	/**
+	 * Makes a packet to set a run of LEDs and repeat that run every stride LEDs, stopping after totallength LEDs
+	 * @param startaddress
+	 * @param color
+	 * @param length
+	 * @param stride
+	 * @param totallength
+	 * @return
+	 */
+	public static Packet makeStrideWithEnd(int startaddress, Color color, int length, int stride, int totallength) {
+		Color dimColor = BrightnessFilter.dimColor(color);
+		return makeStrideWithEndNoDim(startaddress, dimColor, length, stride, totallength);
+	}
+
+	/**
+	 * Makes a packet to set a run of LEDs and repeat that run every stride LEDs, stopping after totallength LEDs
+	 * @param startaddress
+	 * @param color
+	 * @param length
+	 * @param stride
+	 * @param totallength
+	 * @return
+	 */
+	public static Packet makeStrideWithEndNoDim(int startaddress, Color color, int length, int stride, int totallength) {
+		byte[] data = {
+				SET_STRIDE_RANGED,
+				intToByte(startaddress),
+				intToByte(color.getRed()),
+				intToByte(color.getGreen()),
+				intToByte(color.getBlue()),
+				intToByte(length),
+				intToByte(stride),
+				intToByte(totallength)
+		};
+		return new Packet(setSizeByte(data));
+	}
+
+	// this is probably not the best place for this, but I couldn't think of anywhere better
+	public static Packet clipPacketRange(Packet oldpacket, int startaddress, int totallength) {
+		byte[] packetdata = oldpacket.getData();
+		int oldstartaddress, length, stride, oldtotallength;
+		Color color;
+
+		oldstartaddress = byteToInt(packetdata[2]);
+		color = new Color(byteToInt(packetdata[3]), byteToInt(packetdata[4]), byteToInt(packetdata[5]));
+		switch(byteToInt(packetdata[1])) {
+			case SET_SINGLE:
+				if(oldstartaddress < startaddress || oldstartaddress >= startaddress + totallength) {
+					return null;
+				} else {
+					return oldpacket;
+				}
+			case SET_RUN:
+				length = byteToInt(packetdata[6]);
+				if(oldstartaddress < startaddress)
+					oldstartaddress = startaddress;
+				if(oldstartaddress + length > startaddress + totallength)
+					length = startaddress + totallength - oldstartaddress;	
+				
+				return Commands.makeRunNoDim(oldstartaddress, color, length);
+			case SET_STRIDE:
+				length = byteToInt(packetdata[6]);
+				stride = byteToInt(packetdata[7]);
+
+				oldstartaddress = startaddress + ( (stride - (startaddress % stride) + oldstartaddress) % stride);
+
+				oldtotallength = startaddress + totallength - oldstartaddress;
+
+				return Commands.makeStrideWithEndNoDim(oldstartaddress, color, length, stride, oldtotallength);
+			case SET_STRIDE_RANGED:
+				length = byteToInt(packetdata[6]);
+				stride = byteToInt(packetdata[7]);
+				oldtotallength = byteToInt(packetdata[8]);
+
+				int oldstopaddress = oldstartaddress + oldtotallength;
+				int newstopaddress = startaddress + totallength;
+
+				oldstartaddress = startaddress + ( (stride - (startaddress % stride) + oldstartaddress) % stride);
+
+				oldtotallength = Math.min(oldstopaddress, newstopaddress) - oldstartaddress;
+
+				return Commands.makeStrideWithEndNoDim(oldstartaddress, color, length, stride, oldtotallength);
+			default:
+				throw new IllegalArgumentException("Invalid packet command");
+		}
 	}
 	
 	/**
@@ -117,7 +217,7 @@ public class Commands {
 	public static Packet makeSyncPacket() {
 		byte[] data = new byte[16];
 		for(int i = 0; i < data.length; i++) {
-			data[i] = (byte) (0xFF);
+			data[i] = intToByte((0xFF));
 		}
 		return new Packet(data);
 	}

@@ -22,6 +22,7 @@ public class SwingDisplay implements Display {
 		private static final long serialVersionUID = -1282530564629193895L;
 	
 		private final int PIXEL_SIZE = 20;
+		private final int TXT_OFFSET = 4;
 		
 		Color[] pixels;
 		
@@ -42,16 +43,22 @@ public class SwingDisplay implements Display {
 		@Override
 		public void paintComponent(Graphics gd) {
 			Graphics2D g = (Graphics2D) gd;
-		
+			g.setPaint(Color.BLACK);
 			for(int i = 0; i < pixels.length; i++) {
 				Rectangle rect = new Rectangle(i * PIXEL_SIZE, 0, PIXEL_SIZE, PIXEL_SIZE);
+				String num = Integer.toString(i);
+				g.draw(rect);
+				g.drawString(num, i * PIXEL_SIZE + TXT_OFFSET, PIXEL_SIZE - TXT_OFFSET);
+			}
+			for(int i = 0; i < pixels.length; i++) {
+				Rectangle rect = new Rectangle(i * PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE);
 				g.setPaint(pixels[i]);
 				g.fill(rect);
 			}
 		}
 		
 		public void resize() {
-			setPreferredSize(new Dimension(pixels.length*PIXEL_SIZE, PIXEL_SIZE));
+			setPreferredSize(new Dimension(pixels.length*PIXEL_SIZE, PIXEL_SIZE * 2));
 		}
 		
 		private int unsignedByteValue(byte b) {
@@ -69,6 +76,8 @@ public class SwingDisplay implements Display {
 			if(packetPerSec > 781.25) {
 				System.out.format("Exceeds data limit! %.2f packets/sec\n",packetPerSec);
 			}
+
+			int start, length, repeat, totallength;
 			
 			for(Packet packet : pixels) {
 				byte[] b = packet.getData();
@@ -85,13 +94,27 @@ public class SwingDisplay implements Display {
 					break;
 				case 0x04:
 					c = new Color(unsignedByteValue(b[3]), unsignedByteValue(b[4]), unsignedByteValue(b[5]));
-					int start = unsignedByteValue(b[2]), length = unsignedByteValue(b[6]), repeat = unsignedByteValue(b[7]);
+					start = unsignedByteValue(b[2]);
+					length = unsignedByteValue(b[6]);
+					repeat = unsignedByteValue(b[7]);
 					for(int r = 0; r < this.pixels.length; r += repeat) {
 						for(int i = r+start; i < r+start+length && i < this.pixels.length; i++) {
 							this.pixels[i] = c;
 						}
 					}
 					
+					break;
+				case 0x05:
+					c = new Color(unsignedByteValue(b[3]), unsignedByteValue(b[4]), unsignedByteValue(b[5]));
+					start = unsignedByteValue(b[2]);
+					length = unsignedByteValue(b[6]);
+					repeat = unsignedByteValue(b[7]);
+					totallength = unsignedByteValue(b[8]);
+					for(int r = 0; r < start + totallength && r < this.pixels.length; r += repeat) {
+						for(int i = r+start; i < start + totallength && i < r+start+length && i < this.pixels.length; i++) {
+							this.pixels[i] = c;
+						}
+					}
 					break;
 				default:
 					break;
@@ -110,6 +133,8 @@ public class SwingDisplay implements Display {
 
 	private Object lock = new Object();
 
+	boolean visible = false;
+
     public SwingDisplay(int numPixels) {
 
 		BrightnessFilter.setBrightness(1);
@@ -122,6 +147,7 @@ public class SwingDisplay implements Display {
 
 		frame.pack();
 		frame.setVisible(true);
+		visible = true;
 
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
@@ -129,6 +155,7 @@ public class SwingDisplay implements Display {
 				synchronized(lock) {
 					frame.setVisible(false);
 					lock.notifyAll();;
+					visible = false;
 				}
 			}
 		});
@@ -150,4 +177,7 @@ public class SwingDisplay implements Display {
 		}
 	}
 
+	public boolean isVisible(){
+		return visible;
+	}
 }

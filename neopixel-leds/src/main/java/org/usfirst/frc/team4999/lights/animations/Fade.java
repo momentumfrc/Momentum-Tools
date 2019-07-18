@@ -68,9 +68,6 @@ public class Fade implements Animation {
 	private boolean hold = false;
 	
 	private final int STEPS = 50;
-
-	private int startidx;
-	private int endidx;
 	
 	/**
 	 * Fade between the 6 colors of the rainbow
@@ -96,17 +93,11 @@ public class Fade implements Animation {
 	 * @param holdTime duration to hold at a color
 	 */
 	public Fade(Color[] colors, int fadeTime, int holdTime) {
-		this(colors, fadeTime, holdTime, 0, -1);
-	}
-
-	public Fade(Color[] colors, int fadeTime, int holdTime, int startidx, int endidx) {
 		this.colors = colors;
 		current = new DifferenceCalculator(colors[0]);
 		current.calculateDiffs(colors[getNextIndex()], STEPS);
 		this.fadeTime = fadeTime;
 		this.holdTime = holdTime;
-		this.startidx = startidx;
-		this.endidx = endidx;
 	}
 	
 	@Override
@@ -117,11 +108,7 @@ public class Fade implements Animation {
 			hold = true;
 			current.calculateDiffs(colors[idx], STEPS);
 		}
-		if(endidx < 0) {
-			return new Packet[] { Commands.makeStride(startidx, current.toColor(), 1, 1) };
-		} else {
-			return new Packet[] { Commands.makeRun(startidx, current.toColor(), (endidx - startidx) + 1)};
-		}
+		return new Packet[] { Commands.makeStride(0, current.toColor(), 1, 1) };
 		
 	}
 

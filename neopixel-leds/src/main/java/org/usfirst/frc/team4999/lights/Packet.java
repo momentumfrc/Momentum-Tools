@@ -38,6 +38,11 @@ public class Packet {
 		case 0x04:
 			out += "c:stride,";
 			out += String.format("start:%d,length:%d,stride:%d,r:%d,g:%d,b:%d",data[2]&0xFF,data[6]&0xFF,data[7]&0xFF,data[3]&0xFF,data[4]&0xFF,data[5]&0xFF);
+			break;
+		case 0x05:
+			out += "c:stride_with_end,";
+			out += String.format("start:%d,length:%d,stride:%d,totallength:%d,r:%d,g:%d,b:%d",data[2]&0xFF,data[6]&0xFF,data[7]&0xFF,data[8]&0xFF,data[3]&0xFF,data[4]&0xFF,data[5]&0xFF);
+			break;
 		}
 		out += "]";
 		return out;
