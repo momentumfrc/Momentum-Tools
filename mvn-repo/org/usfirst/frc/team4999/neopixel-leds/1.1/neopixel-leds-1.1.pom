@@ -29,11 +29,6 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>edu.wpi.first.wpilibj</groupId>
-      <artifactId>wpilibj-java</artifactId>
-      <version>2019.4.1</version>
-    </dependency>
-    <dependency>
       <groupId>edu.wpi.first.ntcore</groupId>
       <artifactId>ntcore-java</artifactId>
       <version>2019.4.1</version>
