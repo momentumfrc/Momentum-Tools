@@ -39,42 +39,35 @@ public class OverlayTest {
     public void testCoordinator() {
         SwingDisplay display = new SwingDisplay(80);
         Animator an = new Animator(display);
-        AnimationCoordinator coord = new AnimationCoordinator();
+        AnimationCoordinator coord = new AnimationCoordinator(an);
 
         Animation background = new BounceStack(new Color[] {Color.MOMENTUM_PURPLE, Color.MOMENTUM_PURPLE, Color.MOMENTUM_BLUE, Color.MOMENTUM_BLUE}, 8, 40);
 
         coord.setBase(background);
-        an.setAnimation(coord.getCurrentAnimation());
         sleep(5000);
 
         Animation greenSection = new SolidPatch(Color.GREEN, 15, 30);
         coord.pushAnimation("Green Section", greenSection, true);
-        an.setAnimation(coord.getCurrentAnimation());
         sleep(5000);
 
         Animation rainbow = Snake.rainbowSnake(50);
         coord.pushAnimation("RainbowSnake", rainbow, false);
-        an.setAnimation(coord.getCurrentAnimation());
         sleep(5000);
 
         Animation fader = new Fade(new Color[] {Color.RED, Color.YELLOW, Color.BLUE}, 1000, 100, 5, 25);
         coord.pushAnimation("Fader", fader, true);
-        an.setAnimation(coord.getCurrentAnimation());
         sleep(5000);
 
         coord.popAnimation("Green Section");
         coord.pushAnimation("Green Section", greenSection, true);
-        an.setAnimation(coord.getCurrentAnimation());
         sleep(5000);
 
         coord.setBase(new Solid(Color.RED));
-        an.setAnimation(coord.getCurrentAnimation());
         sleep(5000);
 
         coord.popAnimation("Fader");
         coord.popAnimation("Green Section");
         coord.popAnimation("RainbowSnake");
-        an.setAnimation(coord.getCurrentAnimation());
         sleep(5000);
 
         an.stopAnimation();
