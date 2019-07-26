@@ -46,6 +46,8 @@ public class OverlayTest {
 
         Animation background = new BounceStack(new Color[] {Color.MOMENTUM_PURPLE, Color.MOMENTUM_PURPLE, Color.MOMENTUM_BLUE, Color.MOMENTUM_BLUE}, 8, 40);
 
+        coord.popAnimation("DNE Animation");
+
         coord.pushAnimation("Background", background, 1, false);
         sleep(2000);
 
@@ -68,6 +70,8 @@ public class OverlayTest {
         coord.popAnimation("Background");
         coord.pushAnimation("Background", new Solid(Color.RED), 1, false);
         sleep(2000);
+
+        coord.popAnimation("DNE Animation");
 
         coord.popAnimation("Fader");
         coord.popAnimation("Green Section");

@@ -87,6 +87,9 @@ public class AnimationCoordinator {
 
     public Animation popAnimation(String key) {
         AnimationHolder holder;
+
+        if(!animationTable.containsKey(key))
+            return null;
         
         animationStack.removeElement(key);
         holder = animationTable.remove(key);
