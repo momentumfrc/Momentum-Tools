@@ -129,6 +129,7 @@ public class SwingDisplay implements Display {
 		
 	}
 
+	private JFrame frame;
     private TestComponent component;
 
 	private Object lock = new Object();
@@ -141,7 +142,7 @@ public class SwingDisplay implements Display {
 
         component = new TestComponent(numPixels);
 
-        JFrame frame = new JFrame();
+        frame = new JFrame();
 		frame.add(component);
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
@@ -176,6 +177,12 @@ public class SwingDisplay implements Display {
 			}
 		}
 	}
+
+	public void close() {
+		frame.dispose();
+	}
+
+
 
 	public boolean isVisible(){
 		return visible;
