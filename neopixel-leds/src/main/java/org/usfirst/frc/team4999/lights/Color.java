@@ -51,10 +51,12 @@ public class Color {
 		return b;
 	}
 	
+	@Override
 	public String toString() {
 		return String.format("R:%d G:%d B:%d", r,g,b);
 	}
 
+	@Override
 	public boolean equals(Object o) {
 		if(o instanceof Color) {
 			Color other = (Color) o;

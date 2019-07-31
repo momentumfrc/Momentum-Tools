@@ -1,11 +1,11 @@
-package org.usfirst.frc.team4999;
+package org.usfirst.frc.team4999.tests;
 
 import org.junit.Test;
-import org.usfirst.frc.team4999.lights.animations.*;
 import org.usfirst.frc.team4999.lights.*;
+import org.usfirst.frc.team4999.lights.animations.*;
+import org.usfirst.frc.team4999.tools.*;
 
-
-public class AnimationTest {
+public class VisualTests {
 
     private static Color[] rainbowcolors = {
         new Color(139, 0, 255),
@@ -14,52 +14,7 @@ public class AnimationTest {
         new Color(255, 127, 0),
         Color.RED
     };
-
-    @Test
-    public void testStackAnimation() {
-        SwingDisplay display = new SwingDisplay(80);
-        Animator animator = new Animator(display);
-
-        Animation stack = new Stack(rainbowcolors, 50, 40);
-        
-        animator.setAnimation(stack);
-
-        display.sleep(50000);
-
-        display.close();
-        animator.stopAnimation();
-    }
-
-    @Test
-    public void testBounceStackAnimation()  {
-        SwingDisplay display = new SwingDisplay(80);
-        Animator animator = new Animator(display);
-
-        Animation bounceStack = new BounceStack(rainbowcolors, 14, 40);
-        
-        animator.setAnimation(bounceStack);
-
-        display.sleep(20000);
-
-        display.close();
-        animator.stopAnimation();
-    }
-
-    @Test
-    public void testSnakeAnimation() {
-        SwingDisplay display = new SwingDisplay(80);
-        Animator animator = new Animator(display);
-
-        Animation snake = Snake.twoColorSnake(Color.BLUE, Color.WHITE, 1, 5, 10, 20);
-        
-        animator.setAnimation(snake);
-
-        display.sleep(10000);
-
-        display.close();
-        animator.stopAnimation();
-    }
-
+    
     @Test
     public void testIndexingAnimation() {
         SwingDisplay display = new SwingDisplay(80);

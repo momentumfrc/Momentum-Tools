@@ -1,10 +1,12 @@
-package org.usfirst.frc.team4999;
+package org.usfirst.frc.team4999.tools;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -24,11 +26,13 @@ public class SwingDisplay implements Display {
 		private final int PIXEL_SIZE = 20;
 		private final int TXT_OFFSET = 4;
 		
-		Color[] pixels;
+		public final Color[] pixels;
 		
 		Dimension pixsize;
 		
 		private long lastTime;
+
+		public boolean checkDataRate = true;
 		
 		public TestComponent(int numPixels) {
 			super();
@@ -70,12 +74,14 @@ public class SwingDisplay implements Display {
 		
 		@Override
 		public void show(Packet[] pixels) {
-
-			double packetPerSec = pixels.length / ((System.currentTimeMillis() - lastTime) / 1000.0);
-			lastTime = System.currentTimeMillis();
-			if(packetPerSec > 781.25) {
-				System.out.format("Exceeds data limit! %.2f packets/sec\n",packetPerSec);
+			if(checkDataRate) {
+				double packetPerSec = pixels.length / ((System.currentTimeMillis() - lastTime) / 1000.0);
+				lastTime = System.currentTimeMillis();
+				if(packetPerSec > 781.25) {
+					System.out.format("Exceeds data limit! %.2f packets/sec\n",packetPerSec);
+				}
 			}
+			
 
 			int start, length, repeat, totallength;
 			
@@ -134,6 +140,8 @@ public class SwingDisplay implements Display {
 
 	private Object lock = new Object();
 
+	private Object keypressLock = new Object();
+
 	boolean visible = false;
 
     public SwingDisplay(int numPixels) {
@@ -155,8 +163,31 @@ public class SwingDisplay implements Display {
 			public void windowClosing(WindowEvent arg) {
 				synchronized(lock) {
 					frame.setVisible(false);
-					lock.notifyAll();;
+					lock.notifyAll();
 					visible = false;
+				}
+				synchronized(keypressLock) {
+					keypressLock.notifyAll();
+				}
+			}
+		});
+
+		frame.addKeyListener(new KeyListener(){
+		
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+		
+			@Override
+			public void keyReleased(KeyEvent e) {
+				
+			}
+		
+			@Override
+			public void keyPressed(KeyEvent e) {
+				synchronized(keypressLock) {
+					keypressLock.notifyAll();
 				}
 			}
 		});
@@ -165,6 +196,7 @@ public class SwingDisplay implements Display {
 
     @Override
     public void show(Packet[] commands) {
+		component.checkDataRate = isVisible();
         component.show(commands);
 	}
 	
@@ -191,11 +223,23 @@ public class SwingDisplay implements Display {
 		}
 	}
 
+	public void waitForKeypress() {
+		synchronized(keypressLock) {
+			try {
+				keypressLock.wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public void close() {
 		frame.dispose();
 	}
 
-
+	public Color[] getCurrentDisplayBuff() {
+		return component.pixels.clone();
+	}
 
 	public boolean isVisible(){
 		return visible;

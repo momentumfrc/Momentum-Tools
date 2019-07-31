@@ -18,6 +18,24 @@ public class Packet {
 	public byte[] getData() {
 		return data;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if(o != null && o instanceof Packet) {
+			Packet other = (Packet) o;
+			byte[] otherData = other.getData();
+			if(data.length != otherData.length)
+				return false;
+			
+			for(int i = 0; i < data.length; i++) {
+				if(data[i] != otherData[i])
+					return false;
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	@Override
 	public String toString() {

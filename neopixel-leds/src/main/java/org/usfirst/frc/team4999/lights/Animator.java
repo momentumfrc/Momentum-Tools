@@ -71,6 +71,8 @@ public class Animator {
 	 * @param pixels Display to output to
 	 */
 	public Animator(Display pixels) {
+		if(pixels == null)
+			return;
 		animate = new AnimatorThread(pixels, new Solid(Color.BLACK));
 		animate.start();
 	}
