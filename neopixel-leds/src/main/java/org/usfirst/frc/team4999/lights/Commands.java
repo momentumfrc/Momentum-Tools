@@ -161,9 +161,10 @@ public class Commands {
 	}
 
 	// this is probably not the best place for this, but I couldn't think of anywhere better
-	public static Packet clipPacketRange(Packet oldpacket, int startaddress, int totallength) {
+	public static Packet[] clipPacketRange(Packet oldpacket, int startaddress, int totallength) {
 		byte[] packetdata = oldpacket.getData();
 		int oldstartaddress, length, stride, oldtotallength;
+		int newstartaddress, newtotallength;
 		Color color;
 
 		oldstartaddress = byteToInt(packetdata[2]);
@@ -173,7 +174,7 @@ public class Commands {
 				if(oldstartaddress < startaddress || oldstartaddress >= startaddress + totallength) {
 					return null;
 				} else {
-					return oldpacket;
+					return new Packet[] {oldpacket};
 				}
 			case SET_RUN:
 				length = byteToInt(packetdata[6]);
@@ -182,16 +183,29 @@ public class Commands {
 				if(oldstartaddress + length > startaddress + totallength)
 					length = startaddress + totallength - oldstartaddress;	
 				
-				return Commands.makeRunNoDim(oldstartaddress, color, length);
+				return new Packet[] {Commands.makeRunNoDim(oldstartaddress, color, length)};
 			case SET_STRIDE:
 				length = byteToInt(packetdata[6]);
 				stride = byteToInt(packetdata[7]);
 
-				oldstartaddress = startaddress + ( (stride - (startaddress % stride) + oldstartaddress) % stride);
+				if(stride == 0) {
+					return Commands.clipPacketRange(Commands.makeRunNoDim(oldstartaddress, color, length), startaddress, totallength);
+				}
 
-				oldtotallength = startaddress + totallength - oldstartaddress;
+				Packet clippedRegion = null;
+				if(oldstartaddress < startaddress && oldstartaddress + length > startaddress) {
+					clippedRegion = Commands.clipPacketRange(Commands.makeRun(startaddress, color, oldstartaddress + length - startaddress), startaddress, totallength)[0];
+				}
 
-				return Commands.makeStrideWithEndNoDim(oldstartaddress, color, length, stride, oldtotallength);
+				newstartaddress = startaddress + ( (stride - (startaddress % stride) + oldstartaddress) % stride);
+
+				newtotallength = startaddress + totallength - newstartaddress;
+
+				if(clippedRegion != null) {
+					return new Packet[] {clippedRegion, Commands.makeStrideWithEndNoDim(newstartaddress, color, length, stride, newtotallength)};
+				} else {
+					return new Packet[] {Commands.makeStrideWithEndNoDim(newstartaddress, color, length, stride, newtotallength)};
+				}
 			case SET_STRIDE_RANGED:
 				length = byteToInt(packetdata[6]);
 				stride = byteToInt(packetdata[7]);
@@ -204,7 +218,7 @@ public class Commands {
 
 				oldtotallength = Math.min(oldstopaddress, newstopaddress) - oldstartaddress;
 
-				return Commands.makeStrideWithEndNoDim(oldstartaddress, color, length, stride, oldtotallength);
+				return new Packet[] {Commands.makeStrideWithEndNoDim(oldstartaddress, color, length, stride, oldtotallength)};
 			default:
 				throw new IllegalArgumentException("Invalid packet command");
 		}

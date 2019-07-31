@@ -28,9 +28,12 @@ public class ClippedAnimation implements Animation {
         Packet[] animationPackets = animation.getNextFrame();
         for(int i = 0; i < animationPackets.length; i++) {
             Packet curr = animationPackets[i];
-            curr = Commands.clipPacketRange(curr, startidx, totallength);
-            if(curr != null)
-                packetbuffer.add(curr);
+            Packet[] clipped =  Commands.clipPacketRange(curr, startidx, totallength);
+            if(curr != null) {
+                for(int j = 0; j < clipped.length; j++) {
+                    packetbuffer.add(clipped[j]);
+                }
+            }
         }
 
         Packet[] outpackets = new Packet[packetbuffer.size()];

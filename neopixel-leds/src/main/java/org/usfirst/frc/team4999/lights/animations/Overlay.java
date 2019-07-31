@@ -6,10 +6,12 @@ import org.usfirst.frc.team4999.lights.Packet;
 
 public class Overlay implements Animation {
 
+    private static final int delay_grouping = 5;
+
     private class AnimationTiming {
 
         public Animation animation;
-        public long nextTimeMs;
+        public int remainingDelay;
         public boolean resetTiming;
         public Packet[] currentFrame;
         
@@ -59,33 +61,32 @@ public class Overlay implements Animation {
 
     @Override
     public int getFrameDelayMilliseconds() {
-        long now = System.currentTimeMillis();
 
         for(int i = 0; i < animations.length; i++) { 
             AnimationTiming curr = animations[i];
             if(curr.resetTiming) {
                 curr.resetTiming = false;
-                curr.nextTimeMs = now + curr.animation.getFrameDelayMilliseconds();
+                curr.remainingDelay = curr.animation.getFrameDelayMilliseconds();
             }
         }
 
-        long mindiff = animations[0].nextTimeMs - now;
+        AnimationTiming min_delay = animations[0];
         for(int i = 0; i < animations.length; i++) {
             AnimationTiming curr = animations[i];
-            long currdiff = curr.nextTimeMs - now;
-            if(mindiff > currdiff)
-                mindiff = currdiff;
+            if(min_delay.remainingDelay > curr.remainingDelay)
+                min_delay = curr;
         }
 
+        int delay = min_delay.remainingDelay;
         for(int i = 0; i < animations.length; i++) {
             AnimationTiming curr = animations[i];
-            long diff = curr.nextTimeMs - now;
-            if(diff == mindiff) {
+            curr.remainingDelay -= delay;
+            if(curr.remainingDelay < delay_grouping) {
                 curr.resetTiming = true;
             }
         }
 
-        return (int) mindiff;
+        return delay;
     }
 
 }
