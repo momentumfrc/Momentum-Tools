@@ -4,11 +4,13 @@ import org.usfirst.frc.team4999.lights.Color;
 import org.usfirst.frc.team4999.lights.Commands;
 import org.usfirst.frc.team4999.lights.Packet;
 
+import static org.usfirst.frc.team4999.lights.AnimationUtils.*;
+
 public class Solid implements Animation {
 	
 	private static int DELAY = 500;
 	
-	Color[] color;
+	Color[] colors;
 	
 	/**
 	 * Loops through the colors of the rainbow
@@ -31,7 +33,7 @@ public class Solid implements Animation {
 	 * @param colors the pattern to paint
 	 */
 	public Solid(Color[] colors) {
-		this.color = colors;
+		this.colors = colors;
 	}
 	
 	/**
@@ -39,17 +41,12 @@ public class Solid implements Animation {
 	 * @param color the color to fill
 	 */
 	public Solid(Color color) {
-		this.color = new Color[]{color};
+		this.colors = new Color[]{color};
 	}
 
 	@Override
 	public Packet[] getNextFrame() {
-		Packet[] out = new Packet[color.length];
-		
-		for(int i = 0; i < out.length; i++) {
-			out[i] = Commands.makeStride(i, color[i % color.length], 1, color.length);
-		}
-		return out;
+		return displayColorBuffer(colors);
 	}
 
 	@Override

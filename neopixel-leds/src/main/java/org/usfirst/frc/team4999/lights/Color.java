@@ -55,6 +55,17 @@ public class Color {
 		return String.format("R:%d G:%d B:%d", r,g,b);
 	}
 
+	public boolean equals(Object o) {
+		if(o instanceof Color) {
+			Color other = (Color) o;
+			return getRed() == other.getRed()
+					&& getGreen() == other.getGreen()
+					&& getBlue() == other.getBlue();
+		} else  {
+			return false;
+		}
+	}
+
 	public static final Color RED = new Color(255,0,0);
 	public static final Color YELLOW = new Color(255,255,0);
 	public static final Color GREEN = new Color(0,255,0);

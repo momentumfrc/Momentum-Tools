@@ -1,8 +1,12 @@
 package org.usfirst.frc.team4999.lights.animations;
 
+import java.util.Vector;
+
 import org.usfirst.frc.team4999.lights.Color;
 import org.usfirst.frc.team4999.lights.Commands;
 import org.usfirst.frc.team4999.lights.Packet;
+
+import static org.usfirst.frc.team4999.lights.AnimationUtils.*;
 
 public class Stack implements Animation {
 	
@@ -14,6 +18,8 @@ public class Stack implements Animation {
 	int width, idx;
 	
 	Color background = Color.WHITE;
+
+	Vector<Packet> packetBuffer;
 	
 
 	public Stack(Color[] colors, int size, int delay) {
@@ -29,6 +35,8 @@ public class Stack implements Animation {
 		
 		width = 0;
 		idx = buffer.length;
+
+		packetBuffer = new Vector<Packet>();
 	}
 
 	@Override
@@ -55,16 +63,8 @@ public class Stack implements Animation {
 				}
 			}
 		}
-		
-		
-		Packet[] out = new Packet[buffer.length];
-		
-		
-		for(int i = 0; i < buffer.length; i++) {
-			out[i] = Commands.makeStride(i, buffer[i], 1, buffer.length);
-		}
-		
-		return out;
+
+		return displayColorBuffer(buffer);
 	}
 
 	@Override

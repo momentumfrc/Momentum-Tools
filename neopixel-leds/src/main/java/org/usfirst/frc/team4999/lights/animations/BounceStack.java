@@ -4,6 +4,8 @@ import org.usfirst.frc.team4999.lights.Color;
 import org.usfirst.frc.team4999.lights.Commands;
 import org.usfirst.frc.team4999.lights.Packet;
 
+import static org.usfirst.frc.team4999.lights.AnimationUtils.*;
+
 public class BounceStack implements Animation {
 	
 	int delay;
@@ -48,15 +50,7 @@ public class BounceStack implements Animation {
 			startidx = (startidx + 1) % buffer.length;
 		}
 		
-		
-		Packet[] out = new Packet[buffer.length];
-		
-		
-		for(int i = 0; i < buffer.length; i++) {
-			out[i] = Commands.makeStride(i, buffer[i], 1, buffer.length);
-		}
-		
-		return out;
+		return displayColorBuffer(buffer);
 	}
 
 	@Override

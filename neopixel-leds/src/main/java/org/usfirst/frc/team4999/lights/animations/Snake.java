@@ -4,6 +4,8 @@ import org.usfirst.frc.team4999.lights.Color;
 import org.usfirst.frc.team4999.lights.Commands;
 import org.usfirst.frc.team4999.lights.Packet;
 
+import static org.usfirst.frc.team4999.lights.AnimationUtils.*;
+
 
 public class Snake implements Animation {
 	
@@ -92,16 +94,16 @@ public class Snake implements Animation {
 
 	@Override
 	public Packet[] getNextFrame() {
+
+		Color[] outbuff = new Color[snakes.length];
 		
-		Packet[] out = new Packet[snakes.length];
-		
-		for(int i = 0; i < out.length; i++) {
-			out[i] = Commands.makeStride(i, snakes[(i + offset) % snakes.length], 1, snakes.length);
+		for(int i = 0; i < outbuff.length; i++) {
+			outbuff[i] = snakes[(i + offset) % snakes.length];
 		}
 		
 		offset = (offset + increment + snakes.length) % snakes.length;
 		
-		return out;
+		return displayColorBuffer(outbuff);
 		
 	}
 

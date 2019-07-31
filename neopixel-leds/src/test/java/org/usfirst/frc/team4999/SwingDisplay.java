@@ -178,6 +178,19 @@ public class SwingDisplay implements Display {
 		}
 	}
 
+	public void sleep(int ms) {
+		if(!visible) {
+			return;
+		}
+		synchronized(lock) {
+			try {
+				lock.wait(ms);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public void close() {
 		frame.dispose();
 	}
