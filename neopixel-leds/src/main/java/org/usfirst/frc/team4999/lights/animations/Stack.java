@@ -3,7 +3,6 @@ package org.usfirst.frc.team4999.lights.animations;
 import java.util.Vector;
 
 import org.usfirst.frc.team4999.lights.Color;
-import org.usfirst.frc.team4999.lights.Commands;
 import org.usfirst.frc.team4999.lights.Packet;
 
 import static org.usfirst.frc.team4999.lights.AnimationUtils.*;

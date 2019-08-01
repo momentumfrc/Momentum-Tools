@@ -1,0 +1,9 @@
+{
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.test.config": [
+        {
+            "name": "NeoPixels",
+            "workingDirectory": "${workspaceFolder}/neopixel-leds"
+        }
+    ]
+}

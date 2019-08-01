@@ -26,6 +26,7 @@ public class AnimationCoordinator {
             this.transparent = transparent;
         }
 
+        @SuppressWarnings("unused")
         public String getKey() {
             return key;
         }

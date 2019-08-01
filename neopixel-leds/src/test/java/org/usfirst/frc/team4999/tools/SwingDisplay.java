@@ -28,12 +28,10 @@ public class SwingDisplay implements Display {
 		
 		public final Color[] pixels;
 		
-		Dimension pixsize;
-		
 		private long lastTime;
 
-		public boolean checkDataRate = true;
-		
+		private double packetsPerSecond = 0;
+
 		public TestComponent(int numPixels) {
 			super();
 			pixels = new Color[numPixels];
@@ -59,10 +57,17 @@ public class SwingDisplay implements Display {
 				g.setPaint(pixels[i]);
 				g.fill(rect);
 			}
+			String packets = String.format("Bandwidth: %.4f packets per second", packetsPerSecond);
+			if(packetsPerSecond > 781.25) {
+				g.setPaint(Color.RED);
+			} else {
+				g.setPaint(Color.BLACK);
+			}
+			g.drawString(packets, TXT_OFFSET, PIXEL_SIZE * 3 - TXT_OFFSET);
 		}
 		
 		public void resize() {
-			setPreferredSize(new Dimension(pixels.length*PIXEL_SIZE, PIXEL_SIZE * 2));
+			setPreferredSize(new Dimension(pixels.length*PIXEL_SIZE, PIXEL_SIZE * 3));
 		}
 		
 		private int unsignedByteValue(byte b) {
@@ -74,14 +79,9 @@ public class SwingDisplay implements Display {
 		
 		@Override
 		public void show(Packet[] pixels) {
-			if(checkDataRate) {
-				double packetPerSec = pixels.length / ((System.currentTimeMillis() - lastTime) / 1000.0);
-				lastTime = System.currentTimeMillis();
-				if(packetPerSec > 781.25) {
-					System.out.format("Exceeds data limit! %.2f packets/sec\n",packetPerSec);
-				}
-			}
-			
+
+			packetsPerSecond = pixels.length / ((System.currentTimeMillis() - lastTime) / 1000.0);
+			lastTime = System.currentTimeMillis();
 
 			int start, length, repeat, totallength;
 			
@@ -196,7 +196,6 @@ public class SwingDisplay implements Display {
 
     @Override
     public void show(Packet[] commands) {
-		component.checkDataRate = isVisible();
         component.show(commands);
 	}
 	

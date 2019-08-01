@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4999.tools;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -31,6 +32,7 @@ public class UnitTestDisplay implements Display {
             final int pixel_size = 20;
             final int txt_offset = 4;
             JComponent component = new JComponent() {
+                private static final long serialVersionUID = 2L;
                 @Override
                 public void paintComponent(Graphics gd) {
                     Graphics2D g = (Graphics2D) gd;
@@ -112,6 +114,9 @@ public class UnitTestDisplay implements Display {
             System.out.println("The display history was succesfully saved");
         } catch (Exception e) {
             e.printStackTrace();
+            if(e instanceof FileNotFoundException) {
+                throw new RuntimeException(String.format("File Not Found: %s", Path.of(animationFileLocation,filename).toString()));
+            }
         } finally {
             if(objectOut != null) {
                 try {
@@ -142,11 +147,11 @@ public class UnitTestDisplay implements Display {
             objectIn = new ObjectInputStream(fileIn);
             
             Object obj = objectIn.readObject();
-            readHistory = (Vector<Color[]>) obj;
-
-            System.out.println("The display history was succesfully read");
-                
+            readHistory = (Vector<Color[]>) obj;        
         } catch (Exception e) {
+            if(e instanceof FileNotFoundException) {
+                throw new RuntimeException(String.format("File Not Found: %s", Path.of(animationFileLocation,filename).toString()));
+            }
             e.printStackTrace();
         } finally {
             if(objectIn != null) {

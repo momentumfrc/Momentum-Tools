@@ -3,7 +3,6 @@ package org.usfirst.frc.team4999.tests;
 import org.junit.Test;
 import org.usfirst.frc.team4999.tools.*;
 import org.usfirst.frc.team4999.lights.AnimationCoordinator;
-import org.usfirst.frc.team4999.lights.Animator;
 import org.usfirst.frc.team4999.lights.Color;
 import org.usfirst.frc.team4999.lights.animations.*;
 

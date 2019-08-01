@@ -12,26 +12,43 @@ public class AnimationTest {
 
     private static Color[] rainbowcolors = {
         new Color(139, 0, 255),
-        Color.BLUE, Color.GREEN,
+        Color.BLUE,
+        Color.GREEN,
         Color.YELLOW,
         new Color(255, 127, 0),
         Color.RED
     };
 
     @Test
-    public void testStackAnimation() {
+    public void testBlinkAnimation() {
         TestAnimator animator = new TestAnimator(80);
 
-        Animation stack = new Stack(rainbowcolors, 25, 40);
-        
-        animator.setAnimation(stack);
+        Animation blink = new Blink(rainbowcolors, 500);
 
-        animator.displayFrames(625);
+        animator.setAnimation(blink);
+
+        animator.displayFrames(10);
 
         animator.display.window.close();
+
+        //animator.display.writeToFile("BlinkAnimation.bin");
+        assertTrue(animator.display.compareToFile("BlinkAnimation.bin"));
+    }
+
+    @Test
+    public void testBounceAnimation() {
+        TestAnimator animator = new TestAnimator(80);
+
+        Animation bounce = new Bounce(Color.WHITE, rainbowcolors, 45, 20);
+
+        animator.setAnimation(bounce);
+
+        animator.displayFrames(250);
         
-        //animator.display.writeToFile("StackAnimation.bin");
-        assertTrue(animator.display.compareToFile("StackAnimation.bin"));
+        animator.display.window.close();
+
+        //animator.display.writeToFile("BounceAnimation.bin");
+        assertTrue(animator.display.compareToFile("BounceAnimation.bin"));
     }
 
     @Test
@@ -42,12 +59,28 @@ public class AnimationTest {
         
         animator.setAnimation(bounceStack);
 
-        animator.displayFrames(150);
+        animator.displayFrames(250);
 
         animator.display.window.close();
 
         //animator.display.writeToFile("BounceStackAnimation.bin");
         assertTrue(animator.display.compareToFile("BounceStackAnimation.bin"));
+    }
+
+    @Test
+    public void testFadeAnimation() {
+        TestAnimator animator = new TestAnimator(80);
+
+        Animation fade = new Fade(rainbowcolors, 300, 300);
+
+        animator.setAnimation(fade);
+
+        animator.displayFrames(600);
+
+        animator.display.window.close();
+
+        //animator.display.writeToFile("FadeAnimation.bin");
+        assertTrue(animator.display.compareToFile("FadeAnimation.bin"));
     }
 
     @Test
@@ -64,6 +97,38 @@ public class AnimationTest {
         
         //animator.display.writeToFile("TwoColorSnakeAnimation.bin");
         assertTrue(animator.display.compareToFile("TwoColorSnakeAnimation.bin"));
+    }
+
+    @Test
+    public void testSolidAnimation() {
+        TestAnimator animator = new TestAnimator(80);
+
+        Animation solid = new Solid(rainbowcolors);
+
+        animator.setAnimation(solid);
+
+        animator.displayFrames(4);
+
+        animator.display.window.close();
+
+        //animator.display.writeToFile("SolidAnimation.bin");
+        assertTrue(animator.display.compareToFile("SolidAnimation.bin"));
+    }
+
+    @Test
+    public void testStackAnimation() {
+        TestAnimator animator = new TestAnimator(80);
+
+        Animation stack = new Stack(rainbowcolors, 25, 40);
+        
+        animator.setAnimation(stack);
+
+        animator.displayFrames(625);
+
+        animator.display.window.close();
+        
+        //animator.display.writeToFile("StackAnimation.bin");
+        assertTrue(animator.display.compareToFile("StackAnimation.bin"));
     }
 
     @Test
