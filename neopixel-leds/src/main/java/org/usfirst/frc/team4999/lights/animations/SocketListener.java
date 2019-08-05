@@ -13,8 +13,6 @@ import org.usfirst.frc.team4999.lights.Packet;
 
 public class SocketListener implements Animation {
 	
-	private static final int PORT = 5800;
-	
 	private ArrayList<Packet> completedPackets;
 	private ArrayList<Packet> buildingPackets;
 	
@@ -23,6 +21,10 @@ public class SocketListener implements Animation {
 	private Thread listener;
 
 	public SocketListener() {
+		this(5800);
+	}
+
+	public SocketListener(int port) {
 		buildingPackets = new ArrayList<Packet>();
 		completedPackets = new ArrayList<Packet>();
 		listener = new Thread() {
@@ -33,7 +35,7 @@ public class SocketListener implements Animation {
 			@Override
 			public void run() {
 				try( 
-					ServerSocket serverSocket = new ServerSocket(PORT);
+					ServerSocket serverSocket = new ServerSocket(port);
 				) {
 					while(!Thread.interrupted() ) {
 						try (
