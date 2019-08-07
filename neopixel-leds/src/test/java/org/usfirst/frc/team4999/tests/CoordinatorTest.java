@@ -112,4 +112,58 @@ public class CoordinatorTest {
         //an.display.writeToFile("CoordinatorFalseTransparency.bin");
         assertTrue(an.display.compareToFile("CoordinatorFalseTransparency.bin"));
     }
+
+    @Test
+    public void testHasAnimation() {
+        TestAnimator an = new TestAnimator(80);
+        AnimationCoordinator coord = new AnimationCoordinator(an);
+
+        Animation hatch_preset_mode_overlay = new Overlay(new Animation[] {
+            new ClippedAnimation(new Solid(Color.YELLOW), 10, 10),
+            new ClippedAnimation(new Solid(Color.YELLOW), 40, 10) });
+        Animation cargo_preset_mode_overlay = new Overlay(new Animation[] {
+            new ClippedAnimation(new Solid(Color.RED), 10, 10),
+            new ClippedAnimation(new Solid(Color.RED), 40, 10) });
+
+        // disabled()
+        for(int i = 0; i < 10; i++) {
+            if (coord.hasAnimation("hatch_preset_mode"))
+                coord.popAnimation("hatch_preset_mode");
+            if (coord.hasAnimation("cargo_preset_mode"))
+                coord.popAnimation("cargo_preset_mode");
+
+            an.displayFrames(2);
+        }
+
+        // selectHatchPresetMode()
+        for(int i = 0; i < 10; i++) {
+            if (!coord.hasAnimation("hatch_preset_mode"))
+                coord.pushAnimation("hatch_preset_mode", hatch_preset_mode_overlay, 10, true);
+            an.displayFrames(2);
+        }
+
+        // selectCargoPresetMode()
+        for(int i = 0; i < 10; i++) {
+            if (!coord.hasAnimation("cargo_preset_mode"))
+                coord.pushAnimation("cargo_preset_mode", cargo_preset_mode_overlay, 10, true);
+            an.displayFrames(2);
+        }
+
+        // selectHatchPresetMode()
+        for(int i = 0; i < 10; i++) {
+            if (!coord.hasAnimation("hatch_preset_mode"))
+                coord.pushAnimation("hatch_preset_mode", hatch_preset_mode_overlay, 10, true);
+            an.displayFrames(2);
+        }
+
+        // selectCargoPresetMode()
+        for(int i = 0; i < 10; i++) {
+            if (!coord.hasAnimation("cargo_preset_mode"))
+                coord.pushAnimation("cargo_preset_mode", cargo_preset_mode_overlay, 10, true);
+            an.displayFrames(2);
+        }
+
+        //an.display.writeToFile("CoordinatorHasAnimation.bin");
+        assertTrue(an.display.compareToFile("CoordinatorHasAnimation.bin"));
+    }
 }

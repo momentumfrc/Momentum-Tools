@@ -26,7 +26,6 @@ public class AnimationCoordinator {
             this.transparent = transparent;
         }
 
-        @SuppressWarnings("unused")
         public String getKey() {
             return key;
         }
@@ -73,7 +72,7 @@ public class AnimationCoordinator {
             return;
         }
         if(priorityTable.containsKey(priority)) {
-            priorityTable.remove(priority);
+            popAnimation(priorityTable.get(priority).getKey());
         }
 
         AnimationHolder holder = new AnimationHolder(key, animation, priority, transparent);
