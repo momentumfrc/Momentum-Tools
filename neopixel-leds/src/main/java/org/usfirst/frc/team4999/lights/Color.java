@@ -16,17 +16,20 @@ public class Color {
 	 * @param b Blue channel
 	 */
 	public Color(int r, int g, int b) {
-		if(!(checkBounds(r) && checkBounds(g) && checkBounds(b))) {
-			System.out.format("Invalid color: R:%d, G:%d, B:%d\n", r, g, b);
-			throw new IllegalArgumentException("All values must be greater than zero and less than 255");
-		}
+		if(!checkBounds(r))
+			throw new IllegalArgumentException(String.format("Invalid color code %d", r));
+		if(!checkBounds(g))
+			throw new IllegalArgumentException(String.format("Invalid color code %d", g));
+		if(!checkBounds(b))
+			throw new IllegalArgumentException(String.format("Invalid color code %d", b));
+		
 		this.r = r;
 		this.g = g;
 		this.b = b;
 	}
 	
 	private boolean checkBounds(int i) {
-		return i >= 0 && i < 256;
+		return (i & 0xFF) == i;
 	}
 	
 	/**
