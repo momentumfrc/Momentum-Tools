@@ -94,5 +94,9 @@ public class AddressableLEDDisplay implements Display {
         }
 
         leds.setData(buffer);
-	}
+    }
+    
+    public void stop() {
+        leds.stop();
+    }
 }
