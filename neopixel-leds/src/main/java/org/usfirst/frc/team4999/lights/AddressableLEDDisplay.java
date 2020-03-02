@@ -14,6 +14,8 @@ public class AddressableLEDDisplay implements Display {
         leds = new AddressableLED(pwm);
         buffer = new AddressableLEDBuffer(length);
 
+        leds.setLength(buffer.getLength());
+
         showTestPattern();
 
         leds.start();
