@@ -5,14 +5,42 @@ import org.usfirst.frc.team4999.utils.Utils;
 import edu.wpi.first.wpilibj.GenericHID;
 
 public class LogitechF310 extends GenericHID {
-	private static final int X_BUTTON = 3;
-	private static final int Y_BUTTON = 4;
-	private static final int A_BUTTON = 1;
-	private static final int B_BUTTON = 2;
-	private static final int L_BUMPER = 5;
-	private static final int R_BUMPER = 6;
-	private static final int START = 8;
-	private static final int BACK = 7;
+	/**
+	 * Represents a digital button on an F310 Controller.
+	*/
+	public enum Button {
+		kBumperLeft(5),
+		kBumperRight(6),
+		kA(1),
+		kB(2),
+		kX(3),
+		kY(4),
+		kBack(7),
+		kStart(8);
+
+		public final int value;
+
+		Button(int value) {
+			this.value = value;
+		}
+	}
+
+	/**
+	 * Represents an axis on an XboxController.
+	 */
+	public enum Axis {
+		kLeftX(2),
+		kRightX(4),
+		kLeftY(1),
+		kRightY(5),
+		kTriggers(3);
+
+		public final int value;
+
+		Axis(int value) {
+			this.value = value;
+		}
+	}
 	
 	public LogitechF310(int port) {
 		super(port);
@@ -21,109 +49,109 @@ public class LogitechF310 extends GenericHID {
 	@Override
 	public double getX(Hand hand) {
 		if(hand == Hand.kLeft) {
-			return getRawAxis(2);
+			return getRawAxis(Axis.kLeftX.value);
 		} else {
-			return getRawAxis(4);
+			return getRawAxis(Axis.kRightX.value);
 		}
 	}
 
 	@Override
 	public double getY(Hand hand) {
 		if(hand == Hand.kLeft) {
-			return getRawAxis(1);
+			return getRawAxis(Axis.kLeftY.value);
 		} else {
-			return getRawAxis(5);
+			return getRawAxis(Axis.kRightY.value);
 		}
 	}
 	
 	public double getTriggerAxis(Hand hand) {
 		if(hand == Hand.kLeft) {
-			return -Utils.clip(getRawAxis(3), -1, 0);
+			return -Utils.clip(getRawAxis(Axis.kTriggers.value), -1, 0);
 		} else {
-			return Utils.clip(getRawAxis(3), 0, 1);
+			return Utils.clip(getRawAxis(Axis.kTriggers.value), 0, 1);
 		}
 	}
 	
 	public boolean getXButton() {
-		return getRawButton(X_BUTTON);
+		return getRawButton(Button.kX.value);
 	}
 	public boolean getXButtonPressed() {
-		return getRawButtonPressed(X_BUTTON);
+		return getRawButtonPressed(Button.kX.value);
 	}
 	public boolean getXButtonReleased() {
-		return getRawButtonReleased(X_BUTTON);
+		return getRawButtonReleased(Button.kX.value);
 	}
 	
 	public boolean getYButton() {
-		return getRawButton(Y_BUTTON);
+		return getRawButton(Button.kY.value);
 	}
 	public boolean getYButtonPressed() {
-		return getRawButtonPressed(Y_BUTTON);
+		return getRawButtonPressed(Button.kY.value);
 	}
 	public boolean getYButtonReleased() {
-		return getRawButtonReleased(Y_BUTTON);
+		return getRawButtonReleased(Button.kY.value);
 	}
 	
 	public boolean getAButton() {
-		return getRawButton(A_BUTTON);
+		return getRawButton(Button.kA.value);
 	}
 	public boolean getAButtonPressed() {
-		return getRawButtonPressed(A_BUTTON);
+		return getRawButtonPressed(Button.kA.value);
 	}
 	public boolean getAButtonReleased() {
-		return getRawButtonReleased(A_BUTTON);
+		return getRawButtonReleased(Button.kA.value);
 	}
 
 	public boolean getBButton() {
-		return getRawButton(B_BUTTON);
+		return getRawButton(Button.kB.value);
 	}
 	public boolean getBButtonPressed() {
-		return getRawButtonPressed(B_BUTTON);
+		return getRawButtonPressed(Button.kB.value);
 	}
 	public boolean getBButtonReleased() {
-		return getRawButtonReleased(B_BUTTON);
+		return getRawButtonReleased(Button.kB.value);
 	}
 	
 	public boolean getBumper(Hand hand) {
 		if(hand == Hand.kLeft) {
-			return getRawButton(L_BUMPER);
+			return getRawButton(Button.kBumperLeft.value);
 		} else {
-			return getRawButton(R_BUMPER);
+			return getRawButton(Button.kBumperRight.value);
 		}
 	}
 	public boolean getBumperPressed(Hand hand) {
 		if(hand == Hand.kLeft) {
-			return getRawButtonPressed(L_BUMPER);
+			return getRawButtonPressed(Button.kBumperLeft.value);
 		} else {
-			return getRawButtonPressed(R_BUMPER);
+			return getRawButtonPressed(Button.kBumperRight.value);
 		}
 	}
 	public boolean getBumperReleased(Hand hand) {
 		if(hand == Hand.kLeft) {
-			return getRawButtonReleased(L_BUMPER);
+			return getRawButtonReleased(Button.kBumperLeft.value);
 		} else {
-			return getRawButtonReleased(R_BUMPER);
+			return getRawButtonReleased(Button.kBumperRight.value);
 		}
 	}
 	
 	public boolean getStartButton() {
-		return getRawButton(START);
+		return getRawButton(Button.kStart.value);
 	}
 	public boolean getStartButtonPressed() {
-		return getRawButtonPressed(START);
+		return getRawButtonPressed(Button.kStart.value);
 	}
 	public boolean getStartButtonReleased() {
-		return getRawButtonReleased(START);
+		return getRawButtonReleased(Button.kStart.value);
 	}
 	
 	public boolean getBackButton() {
-		return getRawButton(BACK);
+		return getRawButton(Button.kBack.value);
 	}
 	public boolean getBackButtonPressed() {
-		return getRawButtonPressed(BACK);
+		return getRawButtonPressed(Button.kBack.value);
 	}
 	public boolean getBackButtonReleased() {
-		return getRawButtonReleased(BACK);
+		return getRawButtonReleased(Button.kBack.value);
 	}
 	
 
