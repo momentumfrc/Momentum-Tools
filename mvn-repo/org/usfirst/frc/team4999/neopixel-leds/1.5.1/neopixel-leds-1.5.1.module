@@ -1,0 +1,76 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.usfirst.frc.team4999",
+    "module": "neopixel-leds",
+    "version": "1.5.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "neopixel-leds-1.5.1.jar",
+          "url": "neopixel-leds-1.5.1.jar",
+          "size": 43797,
+          "sha512": "0deb27d3fc6ec3266679ad30295e712174a325c6287b854cb9021e30b6a514bf8e64624684b151729465a8502e9d0aa9b924da5fe83ae19ea88f6454f478885f",
+          "sha256": "a934b98b2847217815218420bd93fe5ed7eb36265012e52e3aafa06ad067ab9f",
+          "sha1": "1a045ac72c1d9d7953c55badc652f6a4f0107cd4",
+          "md5": "01e2d0a6b0a136a64e996acd24725a0a"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "edu.wpi.first.ntcore",
+          "module": "ntcore-java",
+          "version": {
+            "requires": "2020.3.2"
+          }
+        },
+        {
+          "group": "edu.wpi.first.wpilibj",
+          "module": "wpilibj-java",
+          "version": {
+            "requires": "2020.3.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "neopixel-leds-1.5.1.jar",
+          "url": "neopixel-leds-1.5.1.jar",
+          "size": 43797,
+          "sha512": "0deb27d3fc6ec3266679ad30295e712174a325c6287b854cb9021e30b6a514bf8e64624684b151729465a8502e9d0aa9b924da5fe83ae19ea88f6454f478885f",
+          "sha256": "a934b98b2847217815218420bd93fe5ed7eb36265012e52e3aafa06ad067ab9f",
+          "sha1": "1a045ac72c1d9d7953c55badc652f6a4f0107cd4",
+          "md5": "01e2d0a6b0a136a64e996acd24725a0a"
+        }
+      ]
+    }
+  ]
+}
