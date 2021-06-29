@@ -3,8 +3,14 @@ Source code and maven repository for various momentum tools
 
 Maven repository url: https://raw.githubusercontent.com/momentumfrc/Momentum-Tools/master/mvn-repo/
 
-## Momentum-PID
+## Momentum-PID (**DEPRECATED**)
+
 Custom momentum pid controller.
+
+This project was created because we had several issues with the default
+wpilib-provided PID implementation. However, in the last few years,
+wpilib has updated their PID implementation to fix these issues. Thus
+this project has been deprecated.
 
 GroupId: org.usfirst.frc.team4999 \
 ArtifactId: momentum-pid
