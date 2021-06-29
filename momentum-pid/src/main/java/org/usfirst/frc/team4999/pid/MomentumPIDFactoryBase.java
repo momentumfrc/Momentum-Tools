@@ -12,7 +12,7 @@ import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
 
-
+@Deprecated
 public abstract class MomentumPIDFactoryBase {
 	
 	protected static final String LOCATION = "/home/lvuser/";

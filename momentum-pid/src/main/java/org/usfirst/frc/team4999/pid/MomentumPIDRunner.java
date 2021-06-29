@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import edu.wpi.first.wpilibj.Timer;
 
+@Deprecated
 public class MomentumPIDRunner extends Thread {
 	
 	private final static double DELAY = 0.05;

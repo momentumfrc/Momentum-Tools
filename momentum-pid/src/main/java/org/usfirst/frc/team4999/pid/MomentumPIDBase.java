@@ -3,6 +3,7 @@ package org.usfirst.frc.team4999.pid;
 import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 
+@Deprecated
 public abstract class MomentumPIDBase implements Sendable {
 	private double kP, kI, kD, kF, iErrZone;
 	private double targetZone, targetTime;

@@ -3,6 +3,7 @@ package org.usfirst.frc.team4999.pid;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
 
+@Deprecated
 public class MomentumPID extends MomentumPIDBase {
 	private double result = 0;
 	private PIDSource source;

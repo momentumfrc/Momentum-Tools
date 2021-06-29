@@ -4,6 +4,7 @@ import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
 
+@Deprecated
 public class SendableCANPIDController extends MomentumPIDBase {
 
     private CANSparkMax max;
