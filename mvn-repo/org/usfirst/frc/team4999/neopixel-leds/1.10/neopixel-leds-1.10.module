@@ -1,0 +1,116 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.usfirst.frc.team4999",
+    "module": "neopixel-leds",
+    "version": "1.10",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "neopixel-leds-1.10.jar",
+          "url": "neopixel-leds-1.10.jar",
+          "size": 51390,
+          "sha512": "6099d7d59e8a0e969c8b4f078baa055ba70f45eb028a0652a5552f91aa718dec6785397a81852d23d7cc05a1b185e93f0fff4c331d2318a0bcfa8d4e3d15f307",
+          "sha256": "df16b0812635ec2a5d615c7cc58d82044343c1549747fd0d4d5418d871b9be4e",
+          "sha1": "be86e5ebe95e370d5c71ac3f91dcb354ec5d9ea7",
+          "md5": "19d0de4bb154b0e6cf688ecc1aaafea5"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "edu.wpi.first.ntcore",
+          "module": "ntcore-java",
+          "version": {
+            "requires": "2020.3.2"
+          }
+        },
+        {
+          "group": "edu.wpi.first.wpilibj",
+          "module": "wpilibj-java",
+          "version": {
+            "requires": "2020.3.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "neopixel-leds-1.10.jar",
+          "url": "neopixel-leds-1.10.jar",
+          "size": 51390,
+          "sha512": "6099d7d59e8a0e969c8b4f078baa055ba70f45eb028a0652a5552f91aa718dec6785397a81852d23d7cc05a1b185e93f0fff4c331d2318a0bcfa8d4e3d15f307",
+          "sha256": "df16b0812635ec2a5d615c7cc58d82044343c1549747fd0d4d5418d871b9be4e",
+          "sha1": "be86e5ebe95e370d5c71ac3f91dcb354ec5d9ea7",
+          "md5": "19d0de4bb154b0e6cf688ecc1aaafea5"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "neopixel-leds-1.10-javadoc.jar",
+          "url": "neopixel-leds-1.10-javadoc.jar",
+          "size": 522358,
+          "sha512": "64cf1621ccd0f6bd68b5314a6af7730040d6938c438003de689a690ae1f4aa25c0836b4bca025037bc4a69b75314b18dba7a6ea1f1d439bb14503338f943ce58",
+          "sha256": "7be3ec8904fe62981b0f590b147b0ca6611bc3b967dd6eabdb68594026bff117",
+          "sha1": "19d4db7363cb20fc618c722170f62b382e07d1c3",
+          "md5": "206bbc140469879e9b26d5ac0e05cd00"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "neopixel-leds-1.10-sources.jar",
+          "url": "neopixel-leds-1.10-sources.jar",
+          "size": 31760,
+          "sha512": "563536a03012e55d24de728a2376b75a5a8e54f4ed8b287a8dbcc47b17549f5cfbafb2470528c9d124c3a2688b7fdfa7ef1dc665b794907a665c0ad3b3d1d1a3",
+          "sha256": "171640138d5a756463e21ca9fde1bffcd431824a9192aeffebaf3d3940a0dba4",
+          "sha1": "329e6fcff39d275955a262b1c0c95b4107fb7bc5",
+          "md5": "ce08e8955b18668a3ba755413c3d7cbf"
+        }
+      ]
+    }
+  ]
+}
