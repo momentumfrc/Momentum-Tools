@@ -1,0 +1,100 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.usfirst.frc.team4999",
+    "module": "neopixel-leds",
+    "version": "2.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "neopixel-leds-2.0.jar",
+          "url": "neopixel-leds-2.0.jar",
+          "size": 51202,
+          "sha512": "86e379f906de17861d0ac6dcc80b7c2648ba01e8981cb4c4eeb54b3b5908d4ae43f30adfdaeaff9cad7ccc7583b81b2d466221686b3ca4eeac97b68c100cb203",
+          "sha256": "f636a431f70772f1f34a2cf1f6e4b76e447f0794599aefd23f34f54c42d07d0f",
+          "sha1": "c9bc642db93a0f10b6b6d126cc88518f211b7602",
+          "md5": "864ae8027c4d76c80facb3142e545bb5"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "neopixel-leds-2.0.jar",
+          "url": "neopixel-leds-2.0.jar",
+          "size": 51202,
+          "sha512": "86e379f906de17861d0ac6dcc80b7c2648ba01e8981cb4c4eeb54b3b5908d4ae43f30adfdaeaff9cad7ccc7583b81b2d466221686b3ca4eeac97b68c100cb203",
+          "sha256": "f636a431f70772f1f34a2cf1f6e4b76e447f0794599aefd23f34f54c42d07d0f",
+          "sha1": "c9bc642db93a0f10b6b6d126cc88518f211b7602",
+          "md5": "864ae8027c4d76c80facb3142e545bb5"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "neopixel-leds-2.0-javadoc.jar",
+          "url": "neopixel-leds-2.0-javadoc.jar",
+          "size": 525197,
+          "sha512": "e15dc008c20596875d1fd484aab3f4d0d31eac0bd213d2d08c867482144f2a242f852062ab6a33cb42b5395ba2885695b94252355daad8dabaef6bc289b19fc6",
+          "sha256": "53567271bd2797251ccf0d3db9e7a93e5c8def0266ecae02110b043103830679",
+          "sha1": "a622680e104ee3ca1c89a96c41fa4686723d0ad0",
+          "md5": "1735e5c846315282670629a6c77d14c7"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "neopixel-leds-2.0-sources.jar",
+          "url": "neopixel-leds-2.0-sources.jar",
+          "size": 31905,
+          "sha512": "5e4412cd782a375b2968c30271b6e76fb551f38ac35071554182dae70743e6cf2eb84a0a40cca7a59e4071225430f8d28cffe3adba9554a6178a4f981e7855b7",
+          "sha256": "b96ccb6513ffb9d242ff8342f23b8624d79b99bff9ea981aeb591ddeed52fdae",
+          "sha1": "836b14988a9931c14aa13c9445eda9a9434757cd",
+          "md5": "efecf8d64ef50ab842b44afa68728f4e"
+        }
+      ]
+    }
+  ]
+}
