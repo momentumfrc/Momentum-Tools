@@ -1,0 +1,109 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.momentum4999",
+    "module": "momentum-utils",
+    "version": "3.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.5.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "momentum-utils-3.0.jar",
+          "url": "momentum-utils-3.0.jar",
+          "size": 4788,
+          "sha512": "485558011391dc9f93e51537b54cfa40eff8a52bc63f8ed86183944db51890638c02fb32c19da8aa3d111f010f32fe6e2802610823cfb511f22e137a27e39a37",
+          "sha256": "0498136e2208190de529f74bf37b07a97c62462c7a830406d7638e8c5427bdfa",
+          "sha1": "d86ac325d0f51e0b7d4bf692a9d2ae931da56490",
+          "md5": "a660dd33978fe0adb83c45224658156a"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "edu.wpi.first.wpilibj",
+          "module": "wpilibj-java",
+          "version": {
+            "requires": "2023.1.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "momentum-utils-3.0.jar",
+          "url": "momentum-utils-3.0.jar",
+          "size": 4788,
+          "sha512": "485558011391dc9f93e51537b54cfa40eff8a52bc63f8ed86183944db51890638c02fb32c19da8aa3d111f010f32fe6e2802610823cfb511f22e137a27e39a37",
+          "sha256": "0498136e2208190de529f74bf37b07a97c62462c7a830406d7638e8c5427bdfa",
+          "sha1": "d86ac325d0f51e0b7d4bf692a9d2ae931da56490",
+          "md5": "a660dd33978fe0adb83c45224658156a"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "momentum-utils-3.0-javadoc.jar",
+          "url": "momentum-utils-3.0-javadoc.jar",
+          "size": 89514,
+          "sha512": "270e4bad9effb38a8ed52a8af82819ae31b8a72eddb449eda5cbb9b04ee03e6e45d4e38868581f64b1af433521564be32d2bf7bc009ca1c1c19b04b03a48956f",
+          "sha256": "d7993a59b8ad9857d59af2344259303c7abd019f4c53acc6eef2a3e5b4a417f4",
+          "sha1": "e7c203c6defb790729a2346376167e8678ffe670",
+          "md5": "4a99da7cefeaae6533f1b783b543bf01"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "momentum-utils-3.0-sources.jar",
+          "url": "momentum-utils-3.0-sources.jar",
+          "size": 2406,
+          "sha512": "198cf8ff893e63d8401c4aad5bd2cb91415a65f58b29e73fa0d6f8e2af61e91693b3c56d920729f5e94ecfc08c0b51f7544d2764605fa0cc3d7528aa826bafcd",
+          "sha256": "2d865e47ad6d9c9e3c650141cda836afd8702a8f02aad542e4b27dc264e41801",
+          "sha1": "85476b1cf6bd159da3f43f78035d385009dd8281",
+          "md5": "e046eb56b73285449726a40fdb15a835"
+        }
+      ]
+    }
+  ]
+}

@@ -28,7 +28,7 @@ Vendor file url: https://raw.githubusercontent.com/momentumfrc/Momentum-Tools/ma
 ## Momentum-Utils
 Various utility functions, such as `clip()`, `deadzone()`, and `map()`.
 
-GroupID: org.usfirst.frc.team4999 \
+GroupID: com.momentum4999 \
 ArtifactId: momentum-utils
 
 Vendor file url: https://raw.githubusercontent.com/momentumfrc/Momentum-Tools/master/json/momentum-utils.json
