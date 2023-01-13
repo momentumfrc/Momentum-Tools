@@ -1,7 +1,7 @@
 {
     "fileName": "momentum-utils.json",
     "name": "Momentum_Utils",
-    "version": "3.0",
+    "version": "3.1",
     "uuid": "5a969875-fdb4-47ea-82b5-36a8ad1a1877",
     "mavenUrls": [
         "https://raw.githubusercontent.com/momentumfrc/Momentum-Tools/master/mvn-repo"
@@ -11,7 +11,7 @@
         {
             "groupId": "com.momentum4999",
             "artifactId": "momentum-utils",
-            "version": "3.0"
+            "version": "3.1"
         }
     ],
     "jniDependencies": [],
