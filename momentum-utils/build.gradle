@@ -54,15 +54,17 @@ repositories {
 }
 
 dependencies {
+    def wpilibversion = "2023.3.2"
+
     // Use JUnit Jupiter for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
 
     implementation 'org.ini4j:ini4j:0.5.4'
 
-    implementation 'edu.wpi.first.wpilibj:wpilibj-java:2023.2.1'
-    implementation 'edu.wpi.first.cscore:cscore-java:2023.2.1'
-    implementation 'edu.wpi.first.ntcore:ntcore-java:2023.2.1'
-    implementation 'edu.wpi.first.wpiutil:wpiutil-java:2023.2.1'
+    implementation "edu.wpi.first.wpilibj:wpilibj-java:$wpilibversion"
+    implementation "edu.wpi.first.cscore:cscore-java:$wpilibversion"
+    implementation "edu.wpi.first.ntcore:ntcore-java:$wpilibversion"
+    implementation "edu.wpi.first.wpiutil:wpiutil-java:$wpilibversion"
 }
 
 tasks.named('test') {
