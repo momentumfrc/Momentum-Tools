@@ -13,7 +13,7 @@ plugins {
 }
 
 group = 'com.momentum4999'
-version = '3.2'
+version = '3.3'
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11

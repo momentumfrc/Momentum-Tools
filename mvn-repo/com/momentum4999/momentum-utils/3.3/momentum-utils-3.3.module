@@ -1,0 +1,137 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.momentum4999",
+    "module": "momentum-utils",
+    "version": "3.3",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.5.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "momentum-utils-3.3.jar",
+          "url": "momentum-utils-3.3.jar",
+          "size": 14791,
+          "sha512": "5ae5367cac09079146bc6a4d7500a7fed7f4d6018f6723d7755dd610cabca0ea6418d026f6c705d00e7280156190cb5e66aa57cebe8e53de7f8492dd97abd81a",
+          "sha256": "a76a9a3ade36817b7b4333e693856a1c5159ca1abe1b40114a789319ce473035",
+          "sha1": "b203a8bbe2892036d7cfdcf7cac94b7b664f5680",
+          "md5": "fd0aed5832db8e01dd47224e9f08a019"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.ini4j",
+          "module": "ini4j",
+          "version": {
+            "requires": "0.5.4"
+          }
+        },
+        {
+          "group": "edu.wpi.first.wpilibj",
+          "module": "wpilibj-java",
+          "version": {
+            "requires": "2023.3.2"
+          }
+        },
+        {
+          "group": "edu.wpi.first.cscore",
+          "module": "cscore-java",
+          "version": {
+            "requires": "2023.3.2"
+          }
+        },
+        {
+          "group": "edu.wpi.first.ntcore",
+          "module": "ntcore-java",
+          "version": {
+            "requires": "2023.3.2"
+          }
+        },
+        {
+          "group": "edu.wpi.first.wpiutil",
+          "module": "wpiutil-java",
+          "version": {
+            "requires": "2023.3.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "momentum-utils-3.3.jar",
+          "url": "momentum-utils-3.3.jar",
+          "size": 14791,
+          "sha512": "5ae5367cac09079146bc6a4d7500a7fed7f4d6018f6723d7755dd610cabca0ea6418d026f6c705d00e7280156190cb5e66aa57cebe8e53de7f8492dd97abd81a",
+          "sha256": "a76a9a3ade36817b7b4333e693856a1c5159ca1abe1b40114a789319ce473035",
+          "sha1": "b203a8bbe2892036d7cfdcf7cac94b7b664f5680",
+          "md5": "fd0aed5832db8e01dd47224e9f08a019"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "momentum-utils-3.3-javadoc.jar",
+          "url": "momentum-utils-3.3-javadoc.jar",
+          "size": 90657,
+          "sha512": "296763659e16bb96617836870be7d77050884be2ed507ed247541afff33db840e266312974d82f058de030b55f59df871d504146e6c6985365ad3390c06ec570",
+          "sha256": "f0dc03a493f653e85dd7015815465565a714f04a51fc4a48afb006c09409c450",
+          "sha1": "bbbe5fe12a58fe4ec4fee60efaa081774cb8e702",
+          "md5": "4ca2802fceabb6572af7e560f243c0f7"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "momentum-utils-3.3-sources.jar",
+          "url": "momentum-utils-3.3-sources.jar",
+          "size": 4474,
+          "sha512": "28acad16f03f1c76cf5daeef8b6dd9b0c179a47d368ecc8128a427800e70287dd8ffbdfad44c15282422ede65e288ed850bb9633094fac131e98f84d5f70f31f",
+          "sha256": "335c3e739412af4b76ee5698cf03f58c284bba11c99eafa6efa8dca17ab9a0a7",
+          "sha1": "972d65bf008c926b503b73d62ee2a9adf0cc8812",
+          "md5": "9c3650aac8a00ab28e3f5c8d311d91ed"
+        }
+      ]
+    }
+  ]
+}

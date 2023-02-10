@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!-- This module was also published with a richer model, Gradle metadata,  -->
+  <!-- which should be used instead. Do not delete the following line which  -->
+  <!-- is to indicate to Gradle or any Gradle module metadata file consumer  -->
+  <!-- that they should prefer consuming it instead. -->
+  <!-- do_not_remove: published-with-gradle-metadata -->
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.momentum4999</groupId>
+  <artifactId>momentum-utils</artifactId>
+  <version>3.3</version>
+  <dependencies>
+    <dependency>
+      <groupId>org.ini4j</groupId>
+      <artifactId>ini4j</artifactId>
+      <version>0.5.4</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>edu.wpi.first.wpilibj</groupId>
+      <artifactId>wpilibj-java</artifactId>
+      <version>2023.3.2</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>edu.wpi.first.cscore</groupId>
+      <artifactId>cscore-java</artifactId>
+      <version>2023.3.2</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>edu.wpi.first.ntcore</groupId>
+      <artifactId>ntcore-java</artifactId>
+      <version>2023.3.2</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>edu.wpi.first.wpiutil</groupId>
+      <artifactId>wpiutil-java</artifactId>
+      <version>2023.3.2</version>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+</project>
