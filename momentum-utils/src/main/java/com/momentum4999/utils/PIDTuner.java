@@ -2,13 +2,14 @@ package com.momentum4999.utils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import org.ini4j.Ini;
 
@@ -27,20 +28,52 @@ import edu.wpi.first.wpilibj.shuffleboard.SuppliedValueWidget;
  * are changed. It also saves and loads tuned constants from a file.
  */
 public class PIDTuner {
-
-    public static interface PIDAdapter {
-        public abstract void setP(double kP);
-        public abstract void setI(double kI);
-        public abstract void setD(double kD);
-        public abstract void setFF(double kFF);
-        public abstract void setIZone(double kIZone);
+    public static interface PIDGraphValues {
         public abstract double getSetpoint();
-        public abstract double getCurrentValue();
+        public abstract double getLastMeasurement();
+        public abstract double getLastOutput();
     }
 
     public static class PIDTunerSettings {
         public String shuffleboardTab = "PID Tuning";
         public File saveValuesLocation = new File("pid_constants.ini");
+        public boolean showOnShuffleboard = true;
+
+        public PIDTunerSettings(){}
+        public PIDTunerSettings(PIDTunerSettings toCopy) {
+            this.shuffleboardTab = toCopy.shuffleboardTab;
+            this.saveValuesLocation = toCopy.saveValuesLocation;
+            this.showOnShuffleboard = toCopy.showOnShuffleboard;
+        }
+
+        public PIDTunerSettings withShowOnShuffleboard(boolean showOnShuffleboard) {
+            PIDTunerSettings copy = new PIDTunerSettings(this);
+            copy.showOnShuffleboard = showOnShuffleboard;
+            return copy;
+        }
+
+        public PIDTunerSettings withSaveValuesLocation(File saveValuesLocation) {
+            PIDTunerSettings copy = new PIDTunerSettings(this);
+            copy.saveValuesLocation = saveValuesLocation;
+            return copy;
+        }
+
+        public PIDTunerSettings withShuffleboardTab(String shuffleboardTab) {
+            PIDTunerSettings copy = new PIDTunerSettings(this);
+            copy.shuffleboardTab = shuffleboardTab;
+            return copy;
+        }
+
+    }
+
+    public static class PIDProperty {
+        public final String propertyName;
+        public final Consumer<Double> setter;
+
+        public PIDProperty(String propertyName, Consumer<Double> setter) {
+            this.propertyName = propertyName;
+            this.setter = setter;
+        }
     }
 
     private static class DataStore {
@@ -88,71 +121,127 @@ public class PIDTuner {
         }
     }
 
-    private class PIDProperty implements Consumer<NetworkTableEvent> {
-        public final String propertyName;
-        public final GenericEntry entry;
-        public final int listenerHandle;
-        public Consumer<Double> setter;
+    private static class PIDPropertyImpl implements Consumer<NetworkTableEvent> {
+        private final PIDProperty property;
 
-        public PIDProperty(String propertyName, Consumer<Double> setter) {
-            this.propertyName = propertyName;
-            this.setter = setter;
+        private static class ShuffleboardValues {
+            public final GenericEntry entry;
+            public final int listenerHandle;
 
-            entry = layoutGroup.add(propertyName, 0).withWidget(BuiltInWidgets.kTextView).getEntry();
+            public ShuffleboardValues(GenericEntry entry, int listenerHandle) {
+                this.entry = entry;
+                this.listenerHandle = listenerHandle;
+            }
+        }
 
-            listenerHandle = entry.getTopic().getInstance().addListener(entry.getTopic(), EnumSet.of(NetworkTableEvent.Kind.kValueAll), this);
+        private static class DatastoreValues {
+            public final DataStore store;
+            public final String controllerName;
 
-            var value = store.getValue(controllerName, propertyName);
-            if(value.isPresent()) {
-                entry.setDouble(value.get());
+            public DatastoreValues(DataStore store, String controllerName) {
+                this.store = store;
+                this.controllerName = controllerName;
+            }
+        }
+
+        private Optional<ShuffleboardValues> shuffleboardValues = Optional.empty();
+        private Optional<DatastoreValues> datastoreValues = Optional.empty();
+
+        public PIDPropertyImpl(PIDProperty property) {
+            this.property = property;
+        }
+
+        public void setupShuffleboard(ShuffleboardLayout layoutGroup) {
+            var entry = layoutGroup.add(property.propertyName, 0).withWidget(BuiltInWidgets.kTextView).getEntry();
+            var listenerHandle = entry.getTopic().getInstance().addListener(entry.getTopic(), EnumSet.of(NetworkTableEvent.Kind.kValueAll), this);
+
+            this.shuffleboardValues = Optional.of(new ShuffleboardValues(entry, listenerHandle));
+
+            // Need to propagate the stored value to the shuffleboard if setupDatastore() was
+            // called before setupShuffleboard()
+            if(datastoreValues.isPresent()) {
+                var values = datastoreValues.get();
+                var maybeValue = values.store.getValue(values.controllerName, property.propertyName);
+                if(maybeValue.isPresent()) {
+                    entry.setDouble(maybeValue.get());
+                }
+            }
+        }
+
+        public void setupDatastore(DataStore store, String controllerName) {
+            this.datastoreValues = Optional.of(new DatastoreValues(store, controllerName));
+
+            // Need to propagate the stored value to the controller, and to the shuffleboard
+            // if setupShuffleboard() was called before setupDatastore()
+            var maybeValue = store.getValue(controllerName, property.propertyName);
+            if(maybeValue.isPresent()) {
+                double value = maybeValue.get();
+                if(shuffleboardValues.isPresent()) {
+                    shuffleboardValues.get().entry.setDouble(value);
+                } else {
+                    property.setter.accept(value);
+                }
             }
         }
 
         @Override
         public void accept(NetworkTableEvent e) {
             double value = e.valueData.value.getDouble();
-            store.putValue(controllerName, propertyName, value);
-            setter.accept(value);
-            store.save();
+            property.setter.accept(value);
+            if(datastoreValues.isPresent()) {
+                var values = datastoreValues.get();
+                values.store.putValue(values.controllerName, property.propertyName, value);
+                values.store.save();
+            }
         }
 
         protected void removeListener() {
-            entry.getTopic().getInstance().removeListener(listenerHandle);
+            if(shuffleboardValues.isPresent()) {
+                var values = shuffleboardValues.get();
+                values.entry.getTopic().getInstance().removeListener(values.listenerHandle);
+            }
         }
     }
 
-    private final PIDAdapter adapter;
     private final String controllerName;
-    private final ShuffleboardLayout layoutGroup;
 
     private final DataStore store;
 
-    private final List<PIDProperty> properties = new ArrayList<>();
+    private final List<PIDPropertyImpl> properties;
 
-    private final SuppliedValueWidget<Double> setpointWidget;
-    private final SuppliedValueWidget<Double> currentValueWidget;
+    private SuppliedValueWidget<Double> setpointWidget;
+    private SuppliedValueWidget<Double> lastMeasurementWidget;
+    private SuppliedValueWidget<Double> lastOutputWidget;
 
-    public PIDTuner(String controllerName, PIDAdapter adapter) {
-        this(controllerName, adapter, new PIDTunerSettings());
+    public PIDTuner(String controllerName, PIDTunerSettings settings, Optional<PIDGraphValues> graphValues, PIDProperty... properties) {
+        this.controllerName = controllerName;
+
+        this.store = DataStore.getInstance(settings.saveValuesLocation);
+        this.properties = Arrays.stream(properties).map(PIDPropertyImpl::new).toList();
+
+        for(PIDPropertyImpl prop : this.properties) {
+            prop.setupDatastore(this.store, this.controllerName);
+        }
+
+        if(settings.showOnShuffleboard) {
+            setupShuffleboard(settings.shuffleboardTab, graphValues);
+        }
     }
 
-    public PIDTuner(String controllerName, PIDAdapter adapter, PIDTunerSettings settings) {
-        this.adapter = adapter;
-        this.controllerName = controllerName;
-        this.store = DataStore.getInstance(settings.saveValuesLocation);
+    private void setupShuffleboard(String tabName, Optional<PIDGraphValues> graphValues) {
+        ShuffleboardTab tab = Shuffleboard.getTab(tabName);
+        ShuffleboardLayout layoutGroup = tab.getLayout(controllerName, BuiltInLayouts.kList).withSize(2, 3).withProperties(Map.of("Label position", "RIGHT"));
 
-        ShuffleboardTab tab = Shuffleboard.getTab(settings.shuffleboardTab);
+        for(PIDPropertyImpl prop : this.properties) {
+            prop.setupShuffleboard(layoutGroup);
+        }
 
-        layoutGroup = tab.getLayout(controllerName, BuiltInLayouts.kList).withSize(2, 3).withProperties(Map.of("Label position", "RIGHT"));
-
-        properties.add(new PIDProperty("kP", adapter::setP));
-        properties.add(new PIDProperty("kI", adapter::setI));
-        properties.add(new PIDProperty("kD", adapter::setD));
-        properties.add(new PIDProperty("kFF", adapter::setFF));
-        properties.add(new PIDProperty("kIZone", adapter::setIZone));
-
-        setpointWidget = layoutGroup.addDouble("Setpoint", adapter::getSetpoint).withProperties(Map.of("Visible time", 10));
-        currentValueWidget = layoutGroup.addDouble("Current", adapter::getCurrentValue).withProperties(Map.of("Visible time", 10));
+        if(graphValues.isPresent()) {
+            var values = graphValues.get();
+            setpointWidget = layoutGroup.addDouble("Setpoint", values::getSetpoint).withProperties(Map.of("Visible time", 10));
+            lastMeasurementWidget = layoutGroup.addDouble("Measurement", values::getLastMeasurement).withProperties(Map.of("Visible time", 10));
+            lastOutputWidget = layoutGroup.addDouble("Output", values::getLastOutput).withProperties(Map.of("Visible time", 10));
+        }
     }
 
     /**
@@ -160,7 +249,7 @@ public class PIDTuner {
      * call this method unless you know what you're doing.
      */
     public void cleanup() {
-        for(PIDProperty prop : properties) {
+        for(PIDPropertyImpl prop : properties) {
             prop.removeListener();
         }
     }
