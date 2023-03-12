@@ -10,7 +10,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "7.1"
+      "version": "7.2"
     }
   },
   "variants": [
@@ -28,10 +28,10 @@
           "name": "neopixel-leds-2.0.jar",
           "url": "neopixel-leds-2.0.jar",
           "size": 51202,
-          "sha512": "86e379f906de17861d0ac6dcc80b7c2648ba01e8981cb4c4eeb54b3b5908d4ae43f30adfdaeaff9cad7ccc7583b81b2d466221686b3ca4eeac97b68c100cb203",
-          "sha256": "f636a431f70772f1f34a2cf1f6e4b76e447f0794599aefd23f34f54c42d07d0f",
-          "sha1": "c9bc642db93a0f10b6b6d126cc88518f211b7602",
-          "md5": "864ae8027c4d76c80facb3142e545bb5"
+          "sha512": "ff8bd3f4392c923eaac1ac77b76113c4f67deec34bf2fb166513d02da43b38b83e559f493492c6d0f7c0a603498b228d50a2ae0a695bc97480edd2dd1b59b93f",
+          "sha256": "97a4f6cbe3176240eab7654244fc1bf2cfb840c05394394183515cafabc90ed8",
+          "sha1": "9b3e7c4b63c92a1b3394d58ca6925cdacfa5b0c3",
+          "md5": "1b36d30da7cce618a5094c286b81580e"
         }
       ]
     },
@@ -49,10 +49,10 @@
           "name": "neopixel-leds-2.0.jar",
           "url": "neopixel-leds-2.0.jar",
           "size": 51202,
-          "sha512": "86e379f906de17861d0ac6dcc80b7c2648ba01e8981cb4c4eeb54b3b5908d4ae43f30adfdaeaff9cad7ccc7583b81b2d466221686b3ca4eeac97b68c100cb203",
-          "sha256": "f636a431f70772f1f34a2cf1f6e4b76e447f0794599aefd23f34f54c42d07d0f",
-          "sha1": "c9bc642db93a0f10b6b6d126cc88518f211b7602",
-          "md5": "864ae8027c4d76c80facb3142e545bb5"
+          "sha512": "ff8bd3f4392c923eaac1ac77b76113c4f67deec34bf2fb166513d02da43b38b83e559f493492c6d0f7c0a603498b228d50a2ae0a695bc97480edd2dd1b59b93f",
+          "sha256": "97a4f6cbe3176240eab7654244fc1bf2cfb840c05394394183515cafabc90ed8",
+          "sha1": "9b3e7c4b63c92a1b3394d58ca6925cdacfa5b0c3",
+          "md5": "1b36d30da7cce618a5094c286b81580e"
         }
       ]
     },
@@ -68,11 +68,11 @@
         {
           "name": "neopixel-leds-2.0-javadoc.jar",
           "url": "neopixel-leds-2.0-javadoc.jar",
-          "size": 525197,
-          "sha512": "e15dc008c20596875d1fd484aab3f4d0d31eac0bd213d2d08c867482144f2a242f852062ab6a33cb42b5395ba2885695b94252355daad8dabaef6bc289b19fc6",
-          "sha256": "53567271bd2797251ccf0d3db9e7a93e5c8def0266ecae02110b043103830679",
-          "sha1": "a622680e104ee3ca1c89a96c41fa4686723d0ad0",
-          "md5": "1735e5c846315282670629a6c77d14c7"
+          "size": 208184,
+          "sha512": "5b0a549dadeea52a510e0941fea8f8c083c27fd5af53ae7ba6078ee106abf749bafb0ab14fca847af10d235f5f422f59156719131cc58ef93d10d5ce1293c7bb",
+          "sha256": "845cceefea80685d74f083605eb865e06ef8b489f41c12183219fc9a58b8649a",
+          "sha1": "0f517725417aad5d8c0b0cb9b9d8c9908f3f9b39",
+          "md5": "a692de0e6d720cb6e7bd3b50084428dd"
         }
       ]
     },
@@ -89,10 +89,10 @@
           "name": "neopixel-leds-2.0-sources.jar",
           "url": "neopixel-leds-2.0-sources.jar",
           "size": 31905,
-          "sha512": "5e4412cd782a375b2968c30271b6e76fb551f38ac35071554182dae70743e6cf2eb84a0a40cca7a59e4071225430f8d28cffe3adba9554a6178a4f981e7855b7",
-          "sha256": "b96ccb6513ffb9d242ff8342f23b8624d79b99bff9ea981aeb591ddeed52fdae",
-          "sha1": "836b14988a9931c14aa13c9445eda9a9434757cd",
-          "md5": "efecf8d64ef50ab842b44afa68728f4e"
+          "sha512": "f778d7800e4b4c58afd63a5723be63f1ce8b23e6a9492ca37acab6c23559030c6f3e7642ad65251d9b4f4a353f4d85afd9c62e18ba67bc13ac3d03460c21eac4",
+          "sha256": "bb1e20b936d72ddebd9cc5a4be7a9d6b15355277b9321465aaa47bb62299a962",
+          "sha1": "89b4ed95c8f24ce2eaff3a78a723daede643dc67",
+          "md5": "46fef59786a01290c6448f4f2e698435"
         }
       ]
     }

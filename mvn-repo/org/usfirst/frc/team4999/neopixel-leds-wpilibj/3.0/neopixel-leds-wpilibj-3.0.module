@@ -1,0 +1,123 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.usfirst.frc.team4999",
+    "module": "neopixel-leds-wpilibj",
+    "version": "3.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "neopixel-leds-wpilibj-3.0.jar",
+          "url": "neopixel-leds-wpilibj-3.0.jar",
+          "size": 6171,
+          "sha512": "144653cc1bc5d78686864d7779621b389c460eb888de90f0f598c6cf965fa9434acbfcca3deb93b410a96047f8a45c1a4e76786175a711af6c7b932a4800801a",
+          "sha256": "ecd45a87c04e3c693fc56c6793575760ca1bec6e12f6e71236a764a7ca08ae98",
+          "sha1": "63ba61d96a4eba3692906c0bf477d61a68ffe7a3",
+          "md5": "35d887b3a2994a4169d3e76d3e8c008d"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.usfirst.frc.team4999",
+          "module": "neopixel-leds",
+          "version": {
+            "requires": "2.0"
+          }
+        },
+        {
+          "group": "edu.wpi.first.ntcore",
+          "module": "ntcore-java",
+          "version": {
+            "requires": "2023.4.2"
+          }
+        },
+        {
+          "group": "edu.wpi.first.wpilibj",
+          "module": "wpilibj-java",
+          "version": {
+            "requires": "2023.4.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "neopixel-leds-wpilibj-3.0.jar",
+          "url": "neopixel-leds-wpilibj-3.0.jar",
+          "size": 6171,
+          "sha512": "144653cc1bc5d78686864d7779621b389c460eb888de90f0f598c6cf965fa9434acbfcca3deb93b410a96047f8a45c1a4e76786175a711af6c7b932a4800801a",
+          "sha256": "ecd45a87c04e3c693fc56c6793575760ca1bec6e12f6e71236a764a7ca08ae98",
+          "sha1": "63ba61d96a4eba3692906c0bf477d61a68ffe7a3",
+          "md5": "35d887b3a2994a4169d3e76d3e8c008d"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "neopixel-leds-wpilibj-3.0-javadoc.jar",
+          "url": "neopixel-leds-wpilibj-3.0-javadoc.jar",
+          "size": 78445,
+          "sha512": "dca06bd83cd5430d963bf28e59b563f09c694fbb5150879a4e5c4f7bd65c5fbbbf6e179f3bbeabec37abeeb7713dbcc3378a22a2d94696c13c172bfdb7d021ab",
+          "sha256": "50404a52c6fd7d5471740de717ccfba2b15ec03f59f3589da599e74009bbd0ff",
+          "sha1": "5e73d8c04e032f856e3c4d176df541b914c2fce4",
+          "md5": "6f30b3f15318fc981da1c4e6def13030"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "neopixel-leds-wpilibj-3.0-sources.jar",
+          "url": "neopixel-leds-wpilibj-3.0-sources.jar",
+          "size": 3015,
+          "sha512": "060f20cd40fb776f2aba74938d12ded60a3005371dbc6f9e14c8da1af1d40a2db148aae4e517b4b5447f80196f1893675bf56b0a5c64e40b1b71865838588d73",
+          "sha256": "dbb28e239e00f8321fe5ef5a98fff31beae7a777d72faebb92ca951755574aa7",
+          "sha1": "9eea6f7105a2770e28b01bc08934cac5c2a4d3f2",
+          "md5": "7463fe4dd6aff38238ed4776b70ba757"
+        }
+      ]
+    }
+  ]
+}
