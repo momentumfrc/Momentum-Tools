@@ -27,11 +27,11 @@
         {
           "name": "neopixel-leds-wpilibj-3.0.jar",
           "url": "neopixel-leds-wpilibj-3.0.jar",
-          "size": 6171,
-          "sha512": "144653cc1bc5d78686864d7779621b389c460eb888de90f0f598c6cf965fa9434acbfcca3deb93b410a96047f8a45c1a4e76786175a711af6c7b932a4800801a",
-          "sha256": "ecd45a87c04e3c693fc56c6793575760ca1bec6e12f6e71236a764a7ca08ae98",
-          "sha1": "63ba61d96a4eba3692906c0bf477d61a68ffe7a3",
-          "md5": "35d887b3a2994a4169d3e76d3e8c008d"
+          "size": 6243,
+          "sha512": "f93e012522bbf910be8fc72fe48e23a5277bc69282f52f5169a4c9702d94491994bc8d91565be87f3b342aff672c1606fae7791b6f23f97d5100e5791fce0f35",
+          "sha256": "5988c7c1986a54dbfb25a299ed66eac6ba9fa73bd8d0562a2788a255e2f15ff6",
+          "sha1": "bbe1e239074548bb96e9552ab6e0f7859d077203",
+          "md5": "73c4a91aa7ebbbe631fb6175174e8004"
         }
       ]
     },
@@ -49,7 +49,7 @@
           "group": "org.usfirst.frc.team4999",
           "module": "neopixel-leds",
           "version": {
-            "requires": "2.0"
+            "requires": "3.0"
           }
         },
         {
@@ -71,11 +71,11 @@
         {
           "name": "neopixel-leds-wpilibj-3.0.jar",
           "url": "neopixel-leds-wpilibj-3.0.jar",
-          "size": 6171,
-          "sha512": "144653cc1bc5d78686864d7779621b389c460eb888de90f0f598c6cf965fa9434acbfcca3deb93b410a96047f8a45c1a4e76786175a711af6c7b932a4800801a",
-          "sha256": "ecd45a87c04e3c693fc56c6793575760ca1bec6e12f6e71236a764a7ca08ae98",
-          "sha1": "63ba61d96a4eba3692906c0bf477d61a68ffe7a3",
-          "md5": "35d887b3a2994a4169d3e76d3e8c008d"
+          "size": 6243,
+          "sha512": "f93e012522bbf910be8fc72fe48e23a5277bc69282f52f5169a4c9702d94491994bc8d91565be87f3b342aff672c1606fae7791b6f23f97d5100e5791fce0f35",
+          "sha256": "5988c7c1986a54dbfb25a299ed66eac6ba9fa73bd8d0562a2788a255e2f15ff6",
+          "sha1": "bbe1e239074548bb96e9552ab6e0f7859d077203",
+          "md5": "73c4a91aa7ebbbe631fb6175174e8004"
         }
       ]
     },
@@ -111,11 +111,11 @@
         {
           "name": "neopixel-leds-wpilibj-3.0-sources.jar",
           "url": "neopixel-leds-wpilibj-3.0-sources.jar",
-          "size": 3015,
-          "sha512": "060f20cd40fb776f2aba74938d12ded60a3005371dbc6f9e14c8da1af1d40a2db148aae4e517b4b5447f80196f1893675bf56b0a5c64e40b1b71865838588d73",
-          "sha256": "dbb28e239e00f8321fe5ef5a98fff31beae7a777d72faebb92ca951755574aa7",
-          "sha1": "9eea6f7105a2770e28b01bc08934cac5c2a4d3f2",
-          "md5": "7463fe4dd6aff38238ed4776b70ba757"
+          "size": 3056,
+          "sha512": "91182e43451017529399b9cdd83c19c732994ea9bad6b02a745cb89cedb795321c00777c26673e2070e8fe254ce08ef7cddff934595477cc8dcff2e445bfafc7",
+          "sha256": "00d9033f2f94839d8e7e5d776a99e07d00a73b852204de75a8577c65b2d7bba3",
+          "sha1": "41b6e876f167beb187afa421a684280474d88047",
+          "md5": "41080cc89cfc98ecc439459fb9e9d910"
         }
       ]
     }
