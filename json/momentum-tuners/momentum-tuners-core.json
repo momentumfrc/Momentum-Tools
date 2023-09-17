@@ -1,0 +1,19 @@
+{
+    "fileName": "momentum-tuners-core.json",
+    "name": "Momentum Tuners Core",
+    "version": "0.0.1",
+    "uuid": "f4cf90fb-86a6-4fde-825d-c375bcdac45f",
+    "mavenUrls": [
+        "https://raw.githubusercontent.com/momentumfrc/Momentum-Tools/master/mvn-repo"
+    ],
+    "jsonUrl": "https://raw.githubusercontent.com/momentumfrc/Momentum-Tools/master/json/momentum-tuners/momentum-tuners-core.json",
+    "javaDependencies": [
+        {
+            "groupId": "com.momentum4999.motune",
+            "artifactId": "motune-core",
+            "version": "0.0.1"
+        }
+    ],
+    "jniDependencies": [],
+    "cppDependencies":  []
+}

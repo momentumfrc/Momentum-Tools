@@ -1,0 +1,23 @@
+{
+    "fileName": "momentum-tuners-revlib.json",
+    "name": "Momentum Tuners REVlib",
+    "version": "0.0.1",
+    "uuid": "a6cc38e6-7239-4bad-bf50-8a3ea14162c3",
+    "mavenUrls": [
+        "https://raw.githubusercontent.com/momentumfrc/Momentum-Tools/master/mvn-repo"
+    ],
+    "jsonUrl": "https://raw.githubusercontent.com/momentumfrc/Momentum-Tools/master/json/momentum-tuners/momentum-tuners-revlib.json",
+    "javaDependencies": [
+        {
+            "groupId": "com.momentum4999.motune",
+            "artifactId": "motune-core",
+            "version": "0.0.1"
+        }, {
+            "groupId": "com.momentum4999.motune",
+            "artifactId": "motune-revlib",
+            "version": "0.0.1"
+        }
+    ],
+    "jniDependencies": [],
+    "cppDependencies":  []
+}

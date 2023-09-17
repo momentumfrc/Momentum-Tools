@@ -1,0 +1,162 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.momentum4999.motune",
+    "module": "motune-phoenix",
+    "version": "0.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.5.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.momentum4999.motune",
+          "module": "motune-core",
+          "version": {
+            "requires": "0.0.1"
+          }
+        },
+        {
+          "group": "com.ctre.phoenix",
+          "module": "api-java",
+          "version": {
+            "requires": "5.30.4"
+          }
+        },
+        {
+          "group": "com.ctre.phoenix",
+          "module": "wpiapi-java",
+          "version": {
+            "requires": "5.30.4"
+          }
+        },
+        {
+          "group": "edu.wpi.first.wpilibj",
+          "module": "wpilibj-java",
+          "version": {
+            "requires": "2023.3.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "motune-phoenix-0.0.1.jar",
+          "url": "motune-phoenix-0.0.1.jar",
+          "size": 10209,
+          "sha512": "f47d1c00e2ab0d11f7d0813add32eee5a6b98c43be395168c270742786298b368434969889a52581a798585cc7fccab565c11678c192b0eafa088933549bf0b6",
+          "sha256": "835b524a9db1938d26b9116cbdc3ce3e9f5f6c655aeadb10581f19c66b9ee77a",
+          "sha1": "b4ef41a05382b6827b6200b98698f80f3ff0b3a4",
+          "md5": "c30900bab5bce4585e1941f5cbc6f50e"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-bom",
+          "version": {
+            "requires": "1.6.21"
+          },
+          "attributes": {
+            "org.gradle.category": "platform"
+          },
+          "endorseStrictVersions": true
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "com.momentum4999.motune",
+          "module": "motune-core",
+          "version": {
+            "requires": "0.0.1"
+          }
+        },
+        {
+          "group": "com.ctre.phoenix",
+          "module": "api-java",
+          "version": {
+            "requires": "5.30.4"
+          }
+        },
+        {
+          "group": "com.ctre.phoenix",
+          "module": "wpiapi-java",
+          "version": {
+            "requires": "5.30.4"
+          }
+        },
+        {
+          "group": "edu.wpi.first.wpilibj",
+          "module": "wpilibj-java",
+          "version": {
+            "requires": "2023.3.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "motune-phoenix-0.0.1.jar",
+          "url": "motune-phoenix-0.0.1.jar",
+          "size": 10209,
+          "sha512": "f47d1c00e2ab0d11f7d0813add32eee5a6b98c43be395168c270742786298b368434969889a52581a798585cc7fccab565c11678c192b0eafa088933549bf0b6",
+          "sha256": "835b524a9db1938d26b9116cbdc3ce3e9f5f6c655aeadb10581f19c66b9ee77a",
+          "sha1": "b4ef41a05382b6827b6200b98698f80f3ff0b3a4",
+          "md5": "c30900bab5bce4585e1941f5cbc6f50e"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "motune-phoenix-0.0.1-javadoc.jar",
+          "url": "motune-phoenix-0.0.1-javadoc.jar",
+          "size": 261,
+          "sha512": "98da8366028473fea646e46b2e68843c85ba60ed64cbd38f6b8fc5dbb4ba8874ef6112e5df3dc7cfea2718926cd80a8048863d61a3e927ceae4503b0ea2cf47a",
+          "sha256": "10531ef9f09d74808e60d32aca43e277caf9fdb67eee56a0db87adeddc79d7f6",
+          "sha1": "0717ae8da2ccfbba0fbe928e8f6ecf5c2dbc3ceb",
+          "md5": "c868af0c3d4962b373984e8de05ebb90"
+        }
+      ]
+    }
+  ]
+}

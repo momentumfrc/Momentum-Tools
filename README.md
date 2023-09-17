@@ -3,6 +3,22 @@ Source code and maven repository for various momentum tools
 
 Maven repository url: https://raw.githubusercontent.com/momentumfrc/Momentum-Tools/master/mvn-repo/
 
+## Momentum-Tuners
+
+A set of wrappers and utility classes for storing PID values in a .ini file, while also listening for updates
+to these values over the network tables.
+
+Very handy for using Glass to tune PID values.
+
+Which vendor file you need depends on which wrappers you want included with the library.
+
+| Wrappers               | Vendor File                                                                                                            |
+|------------------------|------------------------------------------------------------------------------------------------------------------------|
+| *None*                 | <https://raw.githubusercontent.com/momentumfrc/Momentum-Tools/master/json/momentum-tuners/momentum-tuners-core.json>   |
+| REVLib (SparkMax)      | <https://raw.githubusercontent.com/momentumfrc/Momentum-Tools/master/json/momentum-tuners/momentum-tuners-revlib.json  |
+| CTRE Phoenix (TalonFX) | <https://raw.githubusercontent.com/momentumfrc/Momentum-Tools/master/json/momentum-tuners/momentum-tuners-phoenix.json |
+| *All of the above*     | <https://raw.githubusercontent.com/momentumfrc/Momentum-Tools/master/json/momentum-tuners/momentum-tuners-all.json     |
+
 ## Momentum-PID (**DEPRECATED**)
 
 Custom momentum pid controller.
