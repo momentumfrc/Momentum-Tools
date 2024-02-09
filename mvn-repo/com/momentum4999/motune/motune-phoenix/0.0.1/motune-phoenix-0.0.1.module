@@ -30,7 +30,7 @@
           "group": "com.momentum4999.motune",
           "module": "motune-core",
           "version": {
-            "requires": "0.0.1"
+            "requires": "0.1.0"
           }
         },
         {
@@ -51,7 +51,7 @@
           "group": "edu.wpi.first.wpilibj",
           "module": "wpilibj-java",
           "version": {
-            "requires": "2023.3.2"
+            "requires": "2024.2.1"
           }
         }
       ],
@@ -59,11 +59,11 @@
         {
           "name": "motune-phoenix-0.0.1.jar",
           "url": "motune-phoenix-0.0.1.jar",
-          "size": 10209,
-          "sha512": "f47d1c00e2ab0d11f7d0813add32eee5a6b98c43be395168c270742786298b368434969889a52581a798585cc7fccab565c11678c192b0eafa088933549bf0b6",
-          "sha256": "835b524a9db1938d26b9116cbdc3ce3e9f5f6c655aeadb10581f19c66b9ee77a",
-          "sha1": "b4ef41a05382b6827b6200b98698f80f3ff0b3a4",
-          "md5": "c30900bab5bce4585e1941f5cbc6f50e"
+          "size": 10471,
+          "sha512": "45000d3695704ab169d78bdcc093362ada4810fbfa38f891bee50c1cfb497a5f2f7b1174bc4a8b4ca10dd8ba7bf06c112e75e8f7c31236e2fa157cd7c10a96ae",
+          "sha256": "508f727f59e38ebe56e3ef5597d8266691c9b1f80e02a5eb9c4e7b9391674cca",
+          "sha1": "a9a4ddbf53d2d6d699239036eb82c9882a2ae975",
+          "md5": "0405d3b5c6d21431a73402527ddb6040"
         }
       ]
     },
@@ -83,7 +83,7 @@
           "group": "org.jetbrains.kotlin",
           "module": "kotlin-bom",
           "version": {
-            "requires": "1.6.21"
+            "requires": "1.9.22"
           },
           "attributes": {
             "org.gradle.category": "platform"
@@ -94,14 +94,14 @@
           "group": "org.jetbrains.kotlin",
           "module": "kotlin-stdlib-jdk8",
           "version": {
-            "requires": "1.6.21"
+            "requires": "1.9.22"
           }
         },
         {
           "group": "com.momentum4999.motune",
           "module": "motune-core",
           "version": {
-            "requires": "0.0.1"
+            "requires": "0.1.0"
           }
         },
         {
@@ -122,7 +122,7 @@
           "group": "edu.wpi.first.wpilibj",
           "module": "wpilibj-java",
           "version": {
-            "requires": "2023.3.2"
+            "requires": "2024.2.1"
           }
         }
       ],
@@ -130,11 +130,11 @@
         {
           "name": "motune-phoenix-0.0.1.jar",
           "url": "motune-phoenix-0.0.1.jar",
-          "size": 10209,
-          "sha512": "f47d1c00e2ab0d11f7d0813add32eee5a6b98c43be395168c270742786298b368434969889a52581a798585cc7fccab565c11678c192b0eafa088933549bf0b6",
-          "sha256": "835b524a9db1938d26b9116cbdc3ce3e9f5f6c655aeadb10581f19c66b9ee77a",
-          "sha1": "b4ef41a05382b6827b6200b98698f80f3ff0b3a4",
-          "md5": "c30900bab5bce4585e1941f5cbc6f50e"
+          "size": 10471,
+          "sha512": "45000d3695704ab169d78bdcc093362ada4810fbfa38f891bee50c1cfb497a5f2f7b1174bc4a8b4ca10dd8ba7bf06c112e75e8f7c31236e2fa157cd7c10a96ae",
+          "sha256": "508f727f59e38ebe56e3ef5597d8266691c9b1f80e02a5eb9c4e7b9391674cca",
+          "sha1": "a9a4ddbf53d2d6d699239036eb82c9882a2ae975",
+          "md5": "0405d3b5c6d21431a73402527ddb6040"
         }
       ]
     },
