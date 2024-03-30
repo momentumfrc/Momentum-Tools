@@ -30,7 +30,7 @@
           "group": "com.momentum4999.motune",
           "module": "motune-core",
           "version": {
-            "requires": "0.1.0"
+            "requires": "0.1.1"
           }
         },
         {
@@ -53,10 +53,10 @@
           "name": "motune-revlib-0.0.1.jar",
           "url": "motune-revlib-0.0.1.jar",
           "size": 16285,
-          "sha512": "6b0c7be6694c98078813bb60bf75d6366b32c16f99638eb39bb928fdcc1490e61329ab55d1538b784c1117cdac08b48b669bf898fa401a9819351f4cc863d763",
-          "sha256": "be1276195c457a9d16c91a76e532b7510372031f60913771f474ec215fd88b4f",
-          "sha1": "31ce5765180681616ad10a00427d9b9b9e26b795",
-          "md5": "143d1b4382fab6d2b36e585d954df793"
+          "sha512": "ea7d66fa0ac28b9c202775b62914ad6c23a0e73091983f998aa326f392699a42165dd2221b2b00c692aece11680399c5b7c05e7e7002cc32a1e23edfbf62275b",
+          "sha256": "acddc5e6a312cfdffcd7a9bf968b79cd8db478bf7cab297d5462131048193925",
+          "sha1": "bca94a5cc01388c0a6da7bd902963b9c2903e000",
+          "md5": "89fcbf56cade8447a85378237e7768dc"
         }
       ]
     },
@@ -94,7 +94,7 @@
           "group": "com.momentum4999.motune",
           "module": "motune-core",
           "version": {
-            "requires": "0.1.0"
+            "requires": "0.1.1"
           }
         },
         {
@@ -117,10 +117,10 @@
           "name": "motune-revlib-0.0.1.jar",
           "url": "motune-revlib-0.0.1.jar",
           "size": 16285,
-          "sha512": "6b0c7be6694c98078813bb60bf75d6366b32c16f99638eb39bb928fdcc1490e61329ab55d1538b784c1117cdac08b48b669bf898fa401a9819351f4cc863d763",
-          "sha256": "be1276195c457a9d16c91a76e532b7510372031f60913771f474ec215fd88b4f",
-          "sha1": "31ce5765180681616ad10a00427d9b9b9e26b795",
-          "md5": "143d1b4382fab6d2b36e585d954df793"
+          "sha512": "ea7d66fa0ac28b9c202775b62914ad6c23a0e73091983f998aa326f392699a42165dd2221b2b00c692aece11680399c5b7c05e7e7002cc32a1e23edfbf62275b",
+          "sha256": "acddc5e6a312cfdffcd7a9bf968b79cd8db478bf7cab297d5462131048193925",
+          "sha1": "bca94a5cc01388c0a6da7bd902963b9c2903e000",
+          "md5": "89fcbf56cade8447a85378237e7768dc"
         }
       ]
     },
@@ -137,10 +137,10 @@
           "name": "motune-revlib-0.0.1-javadoc.jar",
           "url": "motune-revlib-0.0.1-javadoc.jar",
           "size": 261,
-          "sha512": "88f65917098db0d17b585616fd2970b9ce9d7495e5d37b0ced1b20e343455d75c86ee78bad638fba6d048c2f003ad04f9e13222c1a1cdf154d0303db93c2bff4",
-          "sha256": "d299a3b6a4a2b0a0bffd265dc107e79764f0e82c6d3609a4801e85e81f273dc5",
-          "sha1": "e3e2114ea8e5045bf61a315a4150e4697724bce4",
-          "md5": "1721f105a9f9adc7e3acbe3020c1487e"
+          "sha512": "4589c65bc18146c55a8248642ae7c3c829f7a2b30239382e7c274d580198497e3d417905bbc563cc42fa512e010819860cf912bb5b790580dffb02d4611c7952",
+          "sha256": "018f4241120a2d90852fe74cd879b60126e8dcd57c328dd398977ced62a2b2ce",
+          "sha1": "633f72be45b23aa5bcf3d34e0db71140f100685a",
+          "md5": "dd36ae20ca2f518f9a2703561d4b6425"
         }
       ]
     }

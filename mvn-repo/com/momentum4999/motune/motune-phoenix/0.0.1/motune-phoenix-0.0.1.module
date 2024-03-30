@@ -30,7 +30,7 @@
           "group": "com.momentum4999.motune",
           "module": "motune-core",
           "version": {
-            "requires": "0.1.0"
+            "requires": "0.1.1"
           }
         },
         {
@@ -60,10 +60,10 @@
           "name": "motune-phoenix-0.0.1.jar",
           "url": "motune-phoenix-0.0.1.jar",
           "size": 10471,
-          "sha512": "45000d3695704ab169d78bdcc093362ada4810fbfa38f891bee50c1cfb497a5f2f7b1174bc4a8b4ca10dd8ba7bf06c112e75e8f7c31236e2fa157cd7c10a96ae",
-          "sha256": "508f727f59e38ebe56e3ef5597d8266691c9b1f80e02a5eb9c4e7b9391674cca",
-          "sha1": "a9a4ddbf53d2d6d699239036eb82c9882a2ae975",
-          "md5": "0405d3b5c6d21431a73402527ddb6040"
+          "sha512": "999fe911ed071b86a2ffdeaef932cb66f6715032f6f53254a6d9230bb1a7052597746f93f8951d1809620203f88bc176be7041c62f1b645c36265bf738c6235c",
+          "sha256": "74de43ec3ee0e771bf2c0168186fa768cfeddd52f94f49497f7e5d4d07e9460c",
+          "sha1": "c23fcf9019eea5a617b0d40236ac36e24ed33c3f",
+          "md5": "8068acf8de16c3088a3a1d4bf0aa4186"
         }
       ]
     },
@@ -101,7 +101,7 @@
           "group": "com.momentum4999.motune",
           "module": "motune-core",
           "version": {
-            "requires": "0.1.0"
+            "requires": "0.1.1"
           }
         },
         {
@@ -131,10 +131,10 @@
           "name": "motune-phoenix-0.0.1.jar",
           "url": "motune-phoenix-0.0.1.jar",
           "size": 10471,
-          "sha512": "45000d3695704ab169d78bdcc093362ada4810fbfa38f891bee50c1cfb497a5f2f7b1174bc4a8b4ca10dd8ba7bf06c112e75e8f7c31236e2fa157cd7c10a96ae",
-          "sha256": "508f727f59e38ebe56e3ef5597d8266691c9b1f80e02a5eb9c4e7b9391674cca",
-          "sha1": "a9a4ddbf53d2d6d699239036eb82c9882a2ae975",
-          "md5": "0405d3b5c6d21431a73402527ddb6040"
+          "sha512": "999fe911ed071b86a2ffdeaef932cb66f6715032f6f53254a6d9230bb1a7052597746f93f8951d1809620203f88bc176be7041c62f1b645c36265bf738c6235c",
+          "sha256": "74de43ec3ee0e771bf2c0168186fa768cfeddd52f94f49497f7e5d4d07e9460c",
+          "sha1": "c23fcf9019eea5a617b0d40236ac36e24ed33c3f",
+          "md5": "8068acf8de16c3088a3a1d4bf0aa4186"
         }
       ]
     },
@@ -151,10 +151,10 @@
           "name": "motune-phoenix-0.0.1-javadoc.jar",
           "url": "motune-phoenix-0.0.1-javadoc.jar",
           "size": 261,
-          "sha512": "98da8366028473fea646e46b2e68843c85ba60ed64cbd38f6b8fc5dbb4ba8874ef6112e5df3dc7cfea2718926cd80a8048863d61a3e927ceae4503b0ea2cf47a",
-          "sha256": "10531ef9f09d74808e60d32aca43e277caf9fdb67eee56a0db87adeddc79d7f6",
-          "sha1": "0717ae8da2ccfbba0fbe928e8f6ecf5c2dbc3ceb",
-          "md5": "c868af0c3d4962b373984e8de05ebb90"
+          "sha512": "4589c65bc18146c55a8248642ae7c3c829f7a2b30239382e7c274d580198497e3d417905bbc563cc42fa512e010819860cf912bb5b790580dffb02d4611c7952",
+          "sha256": "018f4241120a2d90852fe74cd879b60126e8dcd57c328dd398977ced62a2b2ce",
+          "sha1": "633f72be45b23aa5bcf3d34e0db71140f100685a",
+          "md5": "dd36ae20ca2f518f9a2703561d4b6425"
         }
       ]
     }
