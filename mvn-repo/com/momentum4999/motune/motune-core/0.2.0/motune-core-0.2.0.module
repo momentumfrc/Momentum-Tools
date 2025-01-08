@@ -1,0 +1,125 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.momentum4999.motune",
+    "module": "motune-core",
+    "version": "0.2.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.11"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "motune-core-0.2.0.jar",
+          "url": "motune-core-0.2.0.jar",
+          "size": 19049,
+          "sha512": "f019abee8694ec85a9d287f5ea8546c569837f2ffaf65567287841cf2232b7c316e692a8de9acde619706df01ae4bfae062cf18082bcbf778670258428cd98c6",
+          "sha256": "a7a1534658a7fd90da4cb2a993b8d0d9d3c22df82a2c0f4d79b5d66dd0c9f90d",
+          "sha1": "8d643809a02e899f666afc2d2a181391ff900ae6",
+          "md5": "e4293ed7f710e1969e5b452984d5d9ec"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.ini4j",
+          "module": "ini4j",
+          "version": {
+            "requires": "0.5.4"
+          }
+        },
+        {
+          "group": "edu.wpi.first.wpilibj",
+          "module": "wpilibj-java",
+          "version": {
+            "requires": "2025.1.1"
+          }
+        },
+        {
+          "group": "edu.wpi.first.ntcore",
+          "module": "ntcore-java",
+          "version": {
+            "requires": "2025.1.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-bom",
+          "version": {
+            "requires": "2.0.10"
+          },
+          "attributes": {
+            "org.gradle.category": "platform"
+          },
+          "endorseStrictVersions": true
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "2.0.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "motune-core-0.2.0.jar",
+          "url": "motune-core-0.2.0.jar",
+          "size": 19049,
+          "sha512": "f019abee8694ec85a9d287f5ea8546c569837f2ffaf65567287841cf2232b7c316e692a8de9acde619706df01ae4bfae062cf18082bcbf778670258428cd98c6",
+          "sha256": "a7a1534658a7fd90da4cb2a993b8d0d9d3c22df82a2c0f4d79b5d66dd0c9f90d",
+          "sha1": "8d643809a02e899f666afc2d2a181391ff900ae6",
+          "md5": "e4293ed7f710e1969e5b452984d5d9ec"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "motune-core-0.2.0-javadoc.jar",
+          "url": "motune-core-0.2.0-javadoc.jar",
+          "size": 261,
+          "sha512": "efdc056f91c687c77037527d1ddf49806d5ad34ecffeb731b47d84ef902de735ef15a7c6a8e68faaf8cc2d7da337d305b62ca18c855edf77dbd4f466dfb45a0b",
+          "sha256": "8b67c87597aba874e6ecac53ea9bc6792cb777dc48de565b28992bcc8251eafe",
+          "sha1": "56a206fcf90dba759ed3f694801693e9c6d6a7c9",
+          "md5": "1875a0c3f597a7f71b577225e2152690"
+        }
+      ]
+    }
+  ]
+}
